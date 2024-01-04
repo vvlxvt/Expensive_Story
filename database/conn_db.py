@@ -8,16 +8,12 @@ from os.path import join, dirname, abspath
 
 # Создаем объект Engine, представляющий базу данных SQLite3
 # engine = create_engine('sqlite:///C:/Users/vital/PycharmProjects/Expensive_Story/database/new.db')
-# engine = create_engine('sqlite:///../data/new.db')
 
 base_dir = abspath(dirname(__file__))
 db_path = join(base_dir, 'data', 'new.db')
 engine = create_engine(f'sqlite:///{db_path}')
 # Создаём` объект MetaData
 meta = MetaData()
-
-# Используем inspect для проверки наличия таблицы
-inspector = inspect(engine)
 
 # Создаю объект registry
 mapper_registry = registry()
