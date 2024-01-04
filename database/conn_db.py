@@ -8,11 +8,11 @@ from os.path import join, dirname, abspath
 
 # Создаем объект Engine, представляющий базу данных SQLite3
 # engine = create_engine('sqlite:///C:/Users/vital/PycharmProjects/Expensive_Story/database/new.db')
-
-base_dir = abspath(dirname(__file__))
-db_path = join(base_dir, 'data', 'new.db')
-print(db_path)
-engine = create_engine(f'sqlite:///{db_path}')
+engine = create_engine('sqlite:////data/new.db')
+# base_dir = abspath(dirname(__file__))
+# db_path = join(base_dir, 'data', 'new.db')
+# print(db_path)
+# engine = create_engine(f'sqlite:///{db_path}')
 # Создаём` объект MetaData
 meta = MetaData()
 
