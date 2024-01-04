@@ -4,9 +4,10 @@ from sqlalchemy.orm.exc import MultipleResultsFound
 from database.expense import Expense
 from services.aux_functions import get_month_range, get_week_range
 from datetime import datetime
+
 # Создаем объект Engine, представляющий базу данных SQLite3
 # engine = create_engine('sqlite:///C:/Users/vital/PycharmProjects/Expensive_Story/database/new.db')
-engine = create_engine('sqlite:///data/new.db')
+engine = create_engine('sqlite:////data/new.db')
 
 # Создаём` объект MetaData
 meta = MetaData()
