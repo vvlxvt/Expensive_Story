@@ -12,7 +12,7 @@ WEB_SERVER_HOST = "127.0.0.1"
 WEB_SERVER_PORT = 8081
 
 WEBHOOK_PATH = "/6006947703:AAFiIBqbYWhmZUl6l1crqb3ZbQI4CpiXkoU"
-BASE_WEBHOOK_URL = "https://bc89-94-43-154-7.ngrok-free.app"
+BASE_WEBHOOK_URL = "https://expensive-story-vvlxvt.amvera.io"
 
 async def on_startup(bot: Bot) -> None:
     await bot.set_webhook(f"{BASE_WEBHOOK_URL}{WEBHOOK_PATH}",)
