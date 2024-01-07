@@ -6,12 +6,12 @@ from services.aux_functions import get_month_range, get_week_range
 from datetime import datetime
 from os.path import join, dirname, abspath
 
-engine = create_engine('sqlite:///data/sqlite_database.db')
+# engine = create_engine('sqlite:///data/sqlite_database.db')
 # Создаем объект Engine, представляющий базу данных SQLite3
-# base_dir = abspath(dirname(__file__))
-# db_path = join(base_dir, 'data', 'new.db')
-# print(db_path)
-# engine = create_engine(f'sqlite:///{db_path}')
+base_dir = abspath(dirname(__file__))
+db_path = join(base_dir, 'data', 'new.db')
+print(db_path)
+engine = create_engine(f'sqlite:///{db_path}')
 
 # Создаём` объект MetaData
 meta = MetaData()
