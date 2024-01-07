@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, MetaData, Table, inspect, func
+from sqlalchemy import create_engine, MetaData, Table, func
 from sqlalchemy.orm import Session, registry, DeclarativeBase
 from sqlalchemy.orm.exc import MultipleResultsFound
 from database.expense import Expense
@@ -6,13 +6,13 @@ from services.aux_functions import get_month_range, get_week_range
 from datetime import datetime
 from os.path import join, dirname, abspath
 
+engine = create_engine('sqlite:///data/sqlite_database.db')
 # Создаем объект Engine, представляющий базу данных SQLite3
-# engine = create_engine('sqlite:///C:/Users/vital/PycharmProjects/Expensive_Story/database/new.db')
-engine = create_engine('sqlite:////data/sqlite_database.db')
 # base_dir = abspath(dirname(__file__))
 # db_path = join(base_dir, 'data', 'new.db')
 # print(db_path)
 # engine = create_engine(f'sqlite:///{db_path}')
+
 # Создаём` объект MetaData
 meta = MetaData()
 

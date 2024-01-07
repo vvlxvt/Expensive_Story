@@ -1,0 +1,9 @@
+.git
+.idea
+data/
+dockerfile
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd

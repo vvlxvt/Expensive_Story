@@ -1,18 +1,19 @@
 import logging, sys
-from config.config import load_config
-from handlers import user_handlers, other_handlers
+import config
+from handlers import other_handlers, user_handlers
 from aiohttp import web
 from aiogram import Bot, Dispatcher
 from aiogram.enums import ParseMode
 from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
 
-config = load_config(None)
-TOKEN = config.tg_bot.token
+conf = config.load_config(None)
+TOKEN = conf.tg_bot.token
+
 WEB_SERVER_HOST = "127.0.0.1"
 WEB_SERVER_PORT = 8081
 
 WEBHOOK_PATH = "/6006947703:AAFiIBqbYWhmZUl6l1crqb3ZbQI4CpiXkoU"
-BASE_WEBHOOK_URL = "https://expensive-story-vvlxvt.amvera.io"
+BASE_WEBHOOK_URL = "https://b2bb-94-43-154-7.ngrok-free.app"
 
 async def on_startup(bot: Bot) -> None:
     await bot.set_webhook(f"{BASE_WEBHOOK_URL}{WEBHOOK_PATH}",)
