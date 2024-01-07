@@ -11,7 +11,7 @@ from os.path import join, dirname, abspath
 # base_dir = abspath(dirname(__file__))
 # db_path = join(base_dir, 'data', 'new.db')
 # print(db_path)
-engine = create_engine(f'sqlite:///data/sqlite_database.db')
+engine = create_engine(f'sqlite:///../data/sqlite_database.db')
 
 # Создаём` объект MetaData
 meta = MetaData()
