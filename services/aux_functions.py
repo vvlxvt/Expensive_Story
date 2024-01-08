@@ -19,7 +19,7 @@ def get_month_range(month:str)->tuple:
         end_date = datetime(year + 1, 1, 1) - timedelta(days=1)
     else:
         end_date = datetime(year, month_num + 1, 1) - timedelta(days=1)
-
+    print(start_date, end_date, sep = ' ')
     return start_date, end_date
 
 def get_week_range()->tuple:
