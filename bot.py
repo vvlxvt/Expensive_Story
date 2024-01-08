@@ -29,6 +29,10 @@ def main() -> None:
 
     # Initialize Bot instance with a default parse mode which will be passed to all API calls
     bot = Bot(TOKEN, parse_mode=ParseMode.HTML)
+    webhook_info = bot.getWebhookInfo()
+
+    # Вывести информацию о вебхуке
+    print(webhook_info.to_dict())
 
     # Create aiohttp.web.Application instance
     app = web.Application()
