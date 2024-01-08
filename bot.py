@@ -10,7 +10,7 @@ conf = config.load_config(None)
 TOKEN = conf.tg_bot.token
 
 WEB_SERVER_HOST = "0.0.0.0"
-WEB_SERVER_PORT = 80
+WEB_SERVER_PORT = 443
 
 WEBHOOK_PATH = "/6006947703:AAFiIBqbYWhmZUl6l1crqb3ZbQI4CpiXkoU"
 BASE_WEBHOOK_URL = "https://expensive-story-vvlxvt.amvera.io"
@@ -29,7 +29,7 @@ def main() -> None:
 
     # Initialize Bot instance with a default parse mode which will be passed to all API calls
     bot = Bot(TOKEN, parse_mode=ParseMode.HTML)
-    webhook_info = bot.getWebhookInfo()
+    webhook_info = bot.get_webhook_info()
 
     # Вывести информацию о вебхуке
     print(webhook_info.to_dict())
