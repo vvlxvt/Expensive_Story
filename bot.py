@@ -9,7 +9,7 @@ from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_applicati
 conf = config.load_config(None)
 TOKEN = conf.tg_bot.token
 
-WEB_SERVER_HOST = "127.0.0.1"
+WEB_SERVER_HOST = "0.0.0.0"
 WEB_SERVER_PORT = 80
 
 WEBHOOK_PATH = "/6006947703:AAFiIBqbYWhmZUl6l1crqb3ZbQI4CpiXkoU"
