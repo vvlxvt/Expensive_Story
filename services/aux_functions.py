@@ -12,14 +12,13 @@ def get_month_range(month:str)->tuple:
     month_num = list(calendar.month_abbr).index(month.capitalize())
     if has_passed_month(month_num):
         year-= 1 # получаем текущий год
-    print(year)
     start_date = datetime(year, month_num, 1)
     # Определение конца месяца путем перехода к следующему месяцу и вычитания одного дня
     if month_num == 12:
         end_date = datetime(year + 1, 1, 1) - timedelta(days=1)
     else:
         end_date = datetime(year, month_num + 1, 1) - timedelta(days=1)
-    print(start_date, end_date, sep = ' ')
+    print('месяц', start_date, end_date, sep = ' ')
     return start_date, end_date
 
 def get_week_range()->tuple:
