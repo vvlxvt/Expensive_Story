@@ -10,7 +10,7 @@ conf = config.load_config(None)
 TOKEN = conf.tg_bot.token
 
 WEB_SERVER_HOST = "0.0.0.0"
-WEB_SERVER_PORT = 443
+WEB_SERVER_PORT = 80
 
 WEBHOOK_PATH = "/6006947703:AAFiIBqbYWhmZUl6l1crqb3ZbQI4CpiXkoU"
 BASE_WEBHOOK_URL = "https://expensive-story-vvlxvt.amvera.io"
