@@ -3,6 +3,15 @@ from datetime import datetime
 from database.queue import no_subs
 from database.expense import Expense
 from database.conn_db import add_new_data, get_subname
+from time import time
+
+def executiontime(func):
+    def wrapper():
+        start = time()
+        func()
+        end = time()
+        print(f'Функция {func} выполнялась: {end - start} сек')
+    return wrapper
 
 def make_name_price(note: str) -> list:
     # парсит сообщение с тратой на товар и цену, возвращает кортеж (товар, цена)
@@ -35,6 +44,7 @@ def make_expense(message: str)->Expense:
     print('make_expense', cat)
     return Expense(name, cat, price, today, message, False)
 
+@executiontime
 def get_categories(row_messages: str)->str:
     # получаю сырое сообщение, распаршенные наименования добавляю в базу данных, вывожу их категории
     messages = split_expense(row_messages)
