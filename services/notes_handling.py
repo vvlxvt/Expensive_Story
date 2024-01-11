@@ -5,6 +5,7 @@ from database.expense import Expense
 from database.conn_db import add_new_data, get_subname
 from time import time
 
+
 def executiontime(func):
     def wrapper():
         start = time()
@@ -37,7 +38,7 @@ def make_expense(message: str)->Expense:
     # преообразует строчку с тратой в обьект Expense
     name, price = make_name_price(message)
     name = name.lower()
-    today = datetime.today().date()
+    today = datetime.now().replace(second=0, microsecond=0)
     cat = get_subname(name)
     if cat != None:
         cat = cat[0]
@@ -70,7 +71,7 @@ def get_categories(row_messages: str)->str:
             print(f"{e} не понимаю")
     return ', '.join(all_subnames)
 
-
+print(make_expense('вода 3'))
 
 
 

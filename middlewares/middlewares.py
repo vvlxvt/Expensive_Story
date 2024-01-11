@@ -20,3 +20,28 @@ class Person:
 
 a = Person()
 print(a.__dict__)
+
+first_tuple = (1, 2, 3, 4, 5)
+second_tuple = (2, 4, 5)
+
+contains_all = list(elem in first_tuple for elem in second_tuple)
+print(contains_all) # True
+
+
+class MyClass:
+    def __init__(self, value):
+        self._value = value
+
+    @property
+    def value(self):
+        return self._value
+
+    @value.setter
+    def value(self, new_value):
+        if new_value < 0:
+            raise ValueError("Value must be positive")
+        self._value = new_value
+
+x = MyClass(-12)
+x.value = -17
+print(x.__dict__)
