@@ -11,7 +11,8 @@ class Expense:
     flag: bool|None
 
     def __repr__(self):
-        return f'{self.name!r}, {self.subname!r}, {self.price!r}, {self.today!r}'
+        return f'{self.__sizeof__()}'
+
 
 
 

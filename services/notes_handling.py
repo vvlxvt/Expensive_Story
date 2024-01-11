@@ -5,15 +5,6 @@ from database.expense import Expense
 from database.conn_db import add_new_data, get_subname
 from time import time
 
-
-def executiontime(func):
-    def wrapper():
-        start = time()
-        func()
-        end = time()
-        print(f'Функция {func} выполнялась: {end - start} сек')
-    return wrapper
-
 def make_name_price(note: str) -> list:
     # парсит сообщение с тратой на товар и цену, возвращает кортеж (товар, цена)
     pattern_1 = r'(^.+)\s(\d{0,3}[\.|,]?\d{1,2}$)'
@@ -42,10 +33,8 @@ def make_expense(message: str)->Expense:
     cat = get_subname(name)
     if cat != None:
         cat = cat[0]
-    print('make_expense', cat)
     return Expense(name, cat, price, today, message, False)
 
-@executiontime
 def get_categories(row_messages: str)->str:
     # получаю сырое сообщение, распаршенные наименования добавляю в базу данных, вывожу их категории
     messages = split_expense(row_messages)
@@ -71,8 +60,8 @@ def get_categories(row_messages: str)->str:
             print(f"{e} не понимаю")
     return ', '.join(all_subnames)
 
-print(make_expense('вода 3'))
 
+print(make_expense('чай 3'))
 
 
 
