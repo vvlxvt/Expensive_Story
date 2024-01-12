@@ -4,7 +4,7 @@ from sqlalchemy.orm.exc import MultipleResultsFound
 from database.expense import Expense
 from services.aux_functions import get_month_range, get_week_range
 from datetime import datetime
-from os.path import join, dirname, abspath
+
 
 engine = create_engine('sqlite:///data/sqlite_database.db')
 # engine = create_engine(f'sqlite:///../data/sqlite_database.db')
@@ -72,6 +72,7 @@ def add_new_data(instance: Expense):  #
     new_data.price = instance.price
     new_data.created = instance.today
     new_data.raw = instance.raw
+    new_data.user_id = instance.user_id
     if instance.flag == True:
         set_value(instance.name, instance.subname)
     session.add(new_data)
@@ -113,7 +114,7 @@ def del_last_note():
 #         return 'нечего удалять'
 
 def format_output(res:list[tuple])->list[str]:
-    # фильтрует пустые значения из запроса по категоиям за месяц
+    # фильтрует пустые значения из запроса по категориям за месяц
     # преобразует список кортежей в список строк
     filtered_res = [(key, value) for key, value in res if value is not None]
     formatted_res = [f'{key}: {value}' for key, value in filtered_res]

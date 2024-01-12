@@ -3,7 +3,6 @@ from datetime import datetime
 from database.queue import no_subs
 from database.expense import Expense
 from database.conn_db import add_new_data, get_subname
-from time import time
 
 def make_name_price(note: str) -> list:
     # парсит сообщение с тратой на товар и цену, возвращает кортеж (товар, цена)
@@ -25,7 +24,7 @@ def split_expense(message: str) ->list[str]:
         res.append(message)
         return res
 
-def make_expense(message: str)->Expense:
+def make_expense(message: str, user_id: int)->Expense:
     # преообразует строчку с тратой в обьект Expense
     name, price = make_name_price(message)
     name = name.lower()
@@ -33,18 +32,17 @@ def make_expense(message: str)->Expense:
     cat = get_subname(name)
     if cat != None:
         cat = cat[0]
-    return Expense(name, cat, price, today, message, False)
+    return Expense(name, cat, price, today, message,user_id, False)
 
-def get_categories(row_messages: str)->str:
+def get_categories(row_messages: str, user_id: int)->str:
     # получаю сырое сообщение, распаршенные наименования добавляю в базу данных, вывожу их категории
     messages = split_expense(row_messages)
     # получаю список строк из сообщения
     all_subnames = []
     # создаю пустой список категорий
     for message in messages:
-        print(message)
         try:
-            expense = make_expense(message)
+            expense = make_expense(message, user_id)
             if expense.subname != None:
                 add_new_data(expense)
                 all_subnames.append(expense.subname)
@@ -54,14 +52,13 @@ def get_categories(row_messages: str)->str:
         except TypeError as e:
             all_subnames.append('unrecognized')
             # если сообщение не парсится оно просто записывается в столбец "сырых сообщений" raw
-            today = datetime.today().date()
-            expense = Expense(None,None,None,today,message, None)
+            today = datetime.now().replace(second=0, microsecond=0)
+            expense = Expense(None,None,None,today,message,user_id, None)
             add_new_data(expense)
             print(f"{e} не понимаю")
     return ', '.join(all_subnames)
 
 
-print(make_expense('чай 3'))
 
 
 

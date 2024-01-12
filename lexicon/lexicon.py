@@ -64,7 +64,7 @@ LEXICON_NONFOOD: dict[str, str] = {
     'utilities':'коммуналка',
     'cafe':'кафе',
     'taxi':'транспорт',
-     'services':'услуги'
+    'services':'услуги'
 }
 
 

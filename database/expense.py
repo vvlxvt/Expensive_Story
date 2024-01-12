@@ -8,6 +8,7 @@ class Expense:
     price: float | None
     today: str | None
     raw: str
+    user_id: int | None
     flag: bool|None
 
     def __repr__(self):

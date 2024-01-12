@@ -6,6 +6,7 @@ from lexicon.lexicon import LEXICON_NOT_BASIC, LEXICON_FOOD, LEXICON_NONFOOD, LE
 from database.queue import no_subs
 from database.expense import Expense
 from datetime import datetime
+from middlewares.make_expens import do_make_expense
 
 router: Router = Router()
 
@@ -14,7 +15,8 @@ async def add_note(message: Message):
     # обрабатывает любое сообщение пользователя с трат-ой/-ами
     # добавляет трату в БД
     row_message = message.text
-    all_subnames  = get_categories(row_message)
+    user_id = message.from_user.id
+    all_subnames = get_categories(row_message, user_id)
     if all_subnames:
         await message.answer(f' добавлено в категории: <b>{all_subnames}</b>')
     if not no_subs.is_empty():
@@ -37,8 +39,9 @@ async def cancel_add_expense(callback: CallbackQuery):
 
 @router.callback_query(F.data.in_(LEXICON_NOT_BASIC.keys()))
 async def process_not_basic_press(callback: CallbackQuery):
+    user_id = callback.from_user.id
     args = no_subs.peek()[0], LEXICON_NOT_BASIC[callback.data], no_subs.peek()[1], datetime.today().date(), \
-        no_subs.peek()[2], True
+        no_subs.peek()[2], user_id, True
     expense = Expense(*args)
     add_new_data(expense)
     await callback.message.answer(text=f'{expense.name} добавлено в категорию <b>{expense.subname}</b>')
@@ -71,8 +74,9 @@ async def process_basic_nonfood_press(callback: CallbackQuery):
 
 @router.callback_query(F.data.in_(LEXICON_FOOD.keys()))
 async def process_food_press(callback: CallbackQuery):
+    user_id = callback.from_user.id
     args = no_subs.peek()[0], LEXICON_FOOD[callback.data], no_subs.peek()[1], datetime.today().date(), \
-    no_subs.dequeue()[2], True
+    no_subs.dequeue()[2], user_id, True
     expense = Expense(*args)
     add_new_data(expense)
     await callback.message.answer(text=f'{expense.name} добавлено в категорию <b>{expense.subname}</b>')
@@ -89,9 +93,7 @@ async def process_food_press(callback: CallbackQuery):
 @router.callback_query(F.data.in_(LEXICON_NONFOOD.keys()))
 async def process_nonfood_press(callback: CallbackQuery):
     #реагирует на ключи из "др. продукты"
-    args = no_subs.peek()[0], LEXICON_NONFOOD[callback.data], no_subs.peek()[1], \
-        datetime.today().date(), no_subs.peek()[2], True
-    expense = Expense(*args)
+    expense = do_make_expense(callback, no_subs)
     add_new_data(expense)
     await callback.message.answer(text=f'{expense.name} добавлено в категорию <b>{expense.subname}</b>')
     no_subs.dequeue()
