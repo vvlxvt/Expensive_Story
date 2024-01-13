@@ -36,7 +36,7 @@ LEXICON_SUBNAMES: dict[str, str] = {
     'pets': 'животные',
     'big_expense':'крупные траты',
     'food': 'основные продукты',
-    'non_food': 'неосновные\nпродукты и услуги'}
+    'non_food': 'неосн.продукты \nи услуги'}
 
 LEXICON_NOT_BASIC: dict[str, str] = {
     'zephyr': 'зефир',
@@ -70,15 +70,18 @@ LEXICON_NONFOOD: dict[str, str] = {
 }
 
 def find_value(my_dict, search_key):
-    for i, val in enumerate(my_dict):  # проверяем ключ для каждого ключа
-        for value in val.values():
-            if value == search_key:
-                return my_dict[i]
+    for value in my_dict.values():  # проверяем ключ для каждого ключа
+        for k,v in value.items():
+            if k == search_key:
+                return value[k]
     return None
 
-LEXICON_CHOICE = (LEXICON_NOT_BASIC, LEXICON_FOOD, LEXICON_NONFOOD)
-LEXICON_KEYS = {key: value for inner_dict in LEXICON_CHOICE for key, value in inner_dict.items()}
+LEXICON_CHOICE = {'LEXICON_NOT_BASIC': LEXICON_NOT_BASIC, 'LEXICON_FOOD': LEXICON_FOOD,
+'LEXICON_NONFOOD':LEXICON_NONFOOD}
+LEXICON_KEYS = {key: value for inner_dict in LEXICON_CHOICE.values() for key, value in inner_dict.items()}
 
+res=find_value(LEXICON_CHOICE, 'молочка')
+print(res)
 
 
 

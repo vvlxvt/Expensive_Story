@@ -2,7 +2,7 @@ from aiogram import Router, F
 from aiogram.types import Message,CallbackQuery
 from services.notes_handling import get_categories, add_new_data, form_expense_instance
 from keyboards.subname_kb import add_subname_kb
-from lexicon.lexicon import LEXICON_FOOD, LEXICON_NONFOOD, LEXICON_SUBNAMES, LEXICON_CHOICE, LEXICON_KEYS, find_value
+from lexicon.lexicon import LEXICON_FOOD, LEXICON_NONFOOD, LEXICON_SUBNAMES, LEXICON_KEYS
 from database.queue import no_subs
 from filters.filter import IsAdmin
 from bot import ADMIN_ID

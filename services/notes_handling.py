@@ -4,6 +4,7 @@ from datetime import datetime
 from database.queue import no_subs, Queue
 from database.expense import Expense
 from database.conn_db import add_new_data, get_subname
+from lexicon.lexicon import find_value, LEXICON_CHOICE
 
 def make_name_price(note: str) -> list:
     # парсит сообщение с тратой на товар и цену, возвращает кортеж (товар, цена)
@@ -62,7 +63,7 @@ def get_categories(row_messages: str, user_id: int)->str:
 def form_expense_instance(no_subs: Queue, callback: CallbackQuery)->Expense:
     '''преобразует траты без категории в класс Expense'''
     name = no_subs.peek()[0]
-    sub_name = callback.data
+    sub_name = find_value(LEXICON_CHOICE, callback.data)
     # вставить сюда поиск соответствия категории по нажатой кнопке
     price = no_subs.peek()[1]
     today = datetime.now().replace(second=0, microsecond=0)
