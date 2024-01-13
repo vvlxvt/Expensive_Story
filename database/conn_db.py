@@ -110,8 +110,7 @@ def format_output(res:list[tuple])->list[str]:
 
 def get_stat_month(mm: str):
     start_date, end_date = get_month_range(mm)
-    result = session.query(MainTable.sub_name,
-                           func.sum(MainTable.price))\
+    result = session.query(MainTable.sub_name, func.round(func.sum(MainTable.price), 2))\
         .filter(MainTable.created >= start_date, MainTable.created <= end_date)\
         .group_by(MainTable.sub_name)\
         .order_by(func.sum(MainTable.price).desc()).all()
@@ -119,15 +118,14 @@ def get_stat_month(mm: str):
 
 def get_stat_week():
     start_date, end_date = get_week_range()
-    result = session.query(MainTable.sub_name,
-                           func.sum(MainTable.price))\
+    result = session.query(MainTable.sub_name, func.round(func.sum(MainTable.price), 2))\
         .filter(MainTable.created >= start_date, MainTable.created <= end_date)\
         .group_by(MainTable.sub_name)\
         .order_by(func.sum(MainTable.price).desc()).all()
     return '\n'.join(format_output(result))
 
 def spend_today():
-    today = datetime.today().date()
+    today = datetime.now().replace(second=0, microsecond=0)
     result = session.query(func.sum(MainTable.price))\
         .filter(func.DATE(MainTable.created) == today).scalar()
     return result

@@ -6,6 +6,7 @@ def has_passed_month(reference_month):
     current_date = datetime.now()
     last_month = current_date - timedelta(days=current_date.day)
     return last_month.month > reference_month
+
 def get_month_range(month:str)->tuple:
     # получаем даты начала и конца запрашиваемого месяца
     year = datetime.now().year

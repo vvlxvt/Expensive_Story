@@ -51,6 +51,7 @@ async def process_basic_nonfood_press(callback: CallbackQuery):
 
 @router.callback_query(F.data.in_(LEXICON_KEYS))
 async def process_nonfood_press(callback: CallbackQuery):
+    '''срабатывает на нажатие категорий отсутствующих в словаре и добавляет в ДБ и словарь'''
     expense = form_expense_instance(no_subs, callback)
     add_new_data(expense)
     await callback.message.answer(text=f'{expense.name} добавлено в категорию <b>{expense.subname}</b>')
