@@ -63,6 +63,7 @@ def form_expense_instance(no_subs: Queue, callback: CallbackQuery)->Expense:
     '''преобразует траты без категории в класс Expense'''
     name = no_subs.peek()[0]
     sub_name = callback.data
+    # вставить сюда поиск соответствия категории по нажатой кнопке
     price = no_subs.peek()[1]
     today = datetime.now().replace(second=0, microsecond=0)
     raw_message = no_subs.peek()[2]

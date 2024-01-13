@@ -8,7 +8,7 @@ from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_applicati
 
 conf = config.load_config(None)
 TOKEN = conf.tg_bot.token
-ADMIN_ID = conf.tg_bot.admin_id
+ADMIN_ID = int(conf.tg_bot.admin_id)
 
 WEB_SERVER_HOST = "0.0.0.0"
 WEB_SERVER_PORT = 80

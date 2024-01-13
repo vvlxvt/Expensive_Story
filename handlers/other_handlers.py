@@ -4,10 +4,13 @@ from services.notes_handling import get_categories, add_new_data, form_expense_i
 from keyboards.subname_kb import add_subname_kb
 from lexicon.lexicon import LEXICON_FOOD, LEXICON_NONFOOD, LEXICON_SUBNAMES, LEXICON_CHOICE, LEXICON_KEYS, find_value
 from database.queue import no_subs
+from filters.filter import IsAdmin
+from bot import ADMIN_ID
 
 router: Router = Router()
 
-@router.message()
+
+@router.message(IsAdmin(ADMIN_ID))
 async def add_note(message: Message):
     # обрабатывает любое сообщение пользователя с трат-ой/-ами
     # добавляет трату в БД
