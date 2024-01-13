@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from datetime import datetime
 
 
 @dataclass
@@ -6,7 +7,7 @@ class Expense:
     name: str | None
     subname: str | None
     price: float | None
-    today: str | None
+    today: datetime | None
     raw: str
     user_id: int | None
     flag: bool|None

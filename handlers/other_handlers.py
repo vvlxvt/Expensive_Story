@@ -2,11 +2,10 @@ from aiogram import Router, F
 from aiogram.types import Message,CallbackQuery
 from services.notes_handling import get_categories, add_new_data
 from keyboards.subname_kb import add_subname_kb
-from lexicon.lexicon import LEXICON_NOT_BASIC, LEXICON_FOOD, LEXICON_NONFOOD, LEXICON_SUBNAMES
+from lexicon.lexicon import LEXICON_FOOD, LEXICON_NONFOOD, LEXICON_SUBNAMES, LEXICON_CHOICE, LEXICON_KEYS, find_value
 from database.queue import no_subs
 from database.expense import Expense
 from datetime import datetime
-from middlewares.make_expens import do_make_expense
 
 router: Router = Router()
 
@@ -37,32 +36,12 @@ async def cancel_add_expense(callback: CallbackQuery):
         await callback.message.delete_reply_markup()
 
 
-@router.callback_query(F.data.in_(LEXICON_NOT_BASIC.keys()))
-async def process_not_basic_press(callback: CallbackQuery):
-    user_id = callback.from_user.id
-    args = no_subs.peek()[0], LEXICON_NOT_BASIC[callback.data], no_subs.peek()[1], datetime.today().date(), \
-        no_subs.peek()[2], user_id, True
-    expense = Expense(*args)
-    add_new_data(expense)
-    await callback.message.answer(text=f'{expense.name} добавлено в категорию <b>{expense.subname}</b>')
-    no_subs.dequeue()
-    if no_subs.is_empty():
-        await callback.answer()
-    else:
-        print(no_subs.peek())
-        await callback.message.answer(f' выберите категорию для: <b>{no_subs.peek()[2]}</b>',
-                                      reply_markup=add_subname_kb(**LEXICON_SUBNAMES))
-        await callback.message.delete_reply_markup()
-
-
-
 @router.callback_query(F.data=='food')
 async def process_basic_food_press(callback: CallbackQuery):
     # реагирует на ключ "food"
     await callback.message.edit_text(text=f'выберите подкатегорию для <b>{no_subs.peek()[2]}</b>',
                                      reply_markup=add_subname_kb(**LEXICON_FOOD))
     await callback.answer()
-
 
 @router.callback_query(F.data=='non_food')
 async def process_basic_nonfood_press(callback: CallbackQuery):
@@ -72,28 +51,16 @@ async def process_basic_nonfood_press(callback: CallbackQuery):
     await callback.answer()
 
 
-@router.callback_query(F.data.in_(LEXICON_FOOD.keys()))
-async def process_food_press(callback: CallbackQuery):
-    user_id = callback.from_user.id
-    args = no_subs.peek()[0], LEXICON_FOOD[callback.data], no_subs.peek()[1], datetime.today().date(), \
-    no_subs.dequeue()[2], user_id, True
-    expense = Expense(*args)
-    add_new_data(expense)
-    await callback.message.answer(text=f'{expense.name} добавлено в категорию <b>{expense.subname}</b>')
-    no_subs.dequeue()
-    if no_subs.is_empty():
-        await callback.message.answer(text='✅ все траты добавлены')
-        await callback.answer()
-    else:
-        await callback.message.answer(f' выберите категорию для: <b>{no_subs.peek()[2]}</b>',
-                                      reply_markup=add_subname_kb(**LEXICON_SUBNAMES))
-        await callback.message.delete_reply_markup()
-
-
-@router.callback_query(F.data.in_(LEXICON_NONFOOD.keys()))
+@router.callback_query(F.data.in_(LEXICON_KEYS))
 async def process_nonfood_press(callback: CallbackQuery):
-    #реагирует на ключи из "др. продукты"
-    expense = do_make_expense(callback, no_subs)
+    name = no_subs.peek()[0]
+    sub_name = callback.data
+    price = no_subs.peek()[1]
+    today = datetime.now().replace(second=0, microsecond=0)
+    raw_message = no_subs.peek()[2]
+    user_id = callback.from_user.id
+    flag = True
+    expense = Expense(name, sub_name, price, today, raw_message, user_id, flag)
     add_new_data(expense)
     await callback.message.answer(text=f'{expense.name} добавлено в категорию <b>{expense.subname}</b>')
     no_subs.dequeue()

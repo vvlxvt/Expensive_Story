@@ -1,3 +1,5 @@
+
+
 LEXICON: dict[str, str] = {
     '/start': '''<b>Hi!</b> I bot which help you to spend your money wisely )''',
     '/help': '''try text your notes like expence price''',
@@ -18,7 +20,7 @@ LEXICON_MONTH: dict[str,str] = {
     'nov': 'ноябрь',
     'dec': 'декабрь'}
 
-LEXICON_CHOICE: dict[str, str] = {
+LEXICON_CANCEL: dict[str, str] = {
     'cancel': 'ОТМЕНИТЬ',
     'add_item': 'Да'}
 
@@ -67,6 +69,16 @@ LEXICON_NONFOOD: dict[str, str] = {
     'services':'услуги'
 }
 
+def find_value(my_dict, search_key):
+    for i, val in enumerate(my_dict):  # проверяем ключ для каждого ключа
+        for value in val.values():
+            if value == search_key:
+                return my_dict[i]
+    return None
 
-Z = LEXICON_FOOD.keys()
-print(*Z)
+LEXICON_CHOICE = (LEXICON_NOT_BASIC, LEXICON_FOOD, LEXICON_NONFOOD)
+LEXICON_KEYS = {key: value for inner_dict in LEXICON_CHOICE for key, value in inner_dict.items()}
+
+
+
+

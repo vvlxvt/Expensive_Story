@@ -80,38 +80,26 @@ def add_new_data(instance: Expense):  #
     session.close()
 
 def del_last_note():
-
-    table_last_id = session.query(func.max(MainTable.id)).scalar() # полцчаю id последней записи
+    '''ф. удаляет из базы данных или из БД и словаря, если было добавление в словарь'''
+    table_last_id = session.query(func.max(MainTable.id)).scalar() # получаю id последней записи в таблице
     main_name_query = session.query(MainTable).filter(MainTable.id == table_last_id).scalar()
     main_name = main_name_query.name
 
-    dict_last_id = session.query(func.max(DictTable.id)).scalar()
+    dict_last_id = session.query(func.max(DictTable.id)).scalar() # получаю id последней записи в словаре
     dict_name_query= session.query(DictTable).filter(DictTable.id == dict_last_id).scalar()
     dict_name = dict_name_query.name
 
     if dict_name == main_name:
         session.delete(main_name_query)
         session.delete(dict_name_query)
-        print('удалил оба')
+        print('удалил из словаря и БД')
     else:
         session.delete(main_name_query)
-        print('удалил один')
+        print('удалил из БД')
     session.commit()
     session.close()
     return main_name
 
-
-# def del_last_note():
-#     max_id = session.query(func.max(MainTable.id)).scalar()
-#     result_to_delete = session.query(MainTable).filter(MainTable.id == max_id).first()
-#     if result_to_delete:
-#         session.delete(result_to_delete)
-#         session.commit()
-#         session.close()
-#         print(type(result_to_delete))
-#         return result_to_delete.raw
-#     else:
-#         return 'нечего удалять'
 
 def format_output(res:list[tuple])->list[str]:
     # фильтрует пустые значения из запроса по категориям за месяц
