@@ -76,12 +76,11 @@ def find_value(my_dict, search_key):
                 return value[k]
     return None
 
-LEXICON_CHOICE = {'LEXICON_NOT_BASIC': LEXICON_NOT_BASIC, 'LEXICON_FOOD': LEXICON_FOOD,
-'LEXICON_NONFOOD':LEXICON_NONFOOD}
-LEXICON_KEYS = {key: value for inner_dict in LEXICON_CHOICE.values() for key, value in inner_dict.items()}
+LEXICON_CHOICE = {'LEXICON_NOT_BASIC': LEXICON_NOT_BASIC,
+                  'LEXICON_FOOD': LEXICON_FOOD,
+                  'LEXICON_NONFOOD':LEXICON_NONFOOD}
 
-res=find_value(LEXICON_CHOICE, 'молочка')
-print(res)
+LEXICON_KEYS = {key: value for inner_dict in LEXICON_CHOICE.values() for key, value in inner_dict.items()}
 
 
 
