@@ -1,6 +1,7 @@
 import re
+from aiogram.types import CallbackQuery
 from datetime import datetime
-from database.queue import no_subs
+from database.queue import no_subs, Queue
 from database.expense import Expense
 from database.conn_db import add_new_data, get_subname
 
@@ -58,6 +59,16 @@ def get_categories(row_messages: str, user_id: int)->str:
             print(f"{e} не понимаю")
     return ', '.join(all_subnames)
 
+def form_expense_instance(no_subs: Queue, callback: CallbackQuery)->Expense:
+    '''преобразует траты без категории в класс Expense'''
+    name = no_subs.peek()[0]
+    sub_name = callback.data
+    price = no_subs.peek()[1]
+    today = datetime.now().replace(second=0, microsecond=0)
+    raw_message = no_subs.peek()[2]
+    user_id = callback.from_user.id
+    flag = True
+    return Expense(name, sub_name, price, today, raw_message, user_id, flag)
 
 
 

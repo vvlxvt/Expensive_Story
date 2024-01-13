@@ -1,11 +1,9 @@
 from aiogram import Router, F
 from aiogram.types import Message,CallbackQuery
-from services.notes_handling import get_categories, add_new_data
+from services.notes_handling import get_categories, add_new_data, form_expense_instance
 from keyboards.subname_kb import add_subname_kb
 from lexicon.lexicon import LEXICON_FOOD, LEXICON_NONFOOD, LEXICON_SUBNAMES, LEXICON_CHOICE, LEXICON_KEYS, find_value
 from database.queue import no_subs
-from database.expense import Expense
-from datetime import datetime
 
 router: Router = Router()
 
@@ -53,14 +51,7 @@ async def process_basic_nonfood_press(callback: CallbackQuery):
 
 @router.callback_query(F.data.in_(LEXICON_KEYS))
 async def process_nonfood_press(callback: CallbackQuery):
-    name = no_subs.peek()[0]
-    sub_name = callback.data
-    price = no_subs.peek()[1]
-    today = datetime.now().replace(second=0, microsecond=0)
-    raw_message = no_subs.peek()[2]
-    user_id = callback.from_user.id
-    flag = True
-    expense = Expense(name, sub_name, price, today, raw_message, user_id, flag)
+    expense = form_expense_instance(no_subs, callback)
     add_new_data(expense)
     await callback.message.answer(text=f'{expense.name} добавлено в категорию <b>{expense.subname}</b>')
     no_subs.dequeue()
