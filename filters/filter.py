@@ -2,7 +2,7 @@ from aiogram.filters import BaseFilter
 from aiogram.types import Message
 
 
-# Собственный фильтр, проверяющий юзера на админа
+# Собственный фильтр, проверяющий на админа
 class IsAdmin(BaseFilter):
     def __init__(self, admin_id: str) -> None:
         # В качестве параметра фильтр принимает список с целыми числами

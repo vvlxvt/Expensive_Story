@@ -1,5 +1,3 @@
-
-
 LEXICON: dict[str, str] = {
     '/start': '''<b>Hi!</b> I bot which help you to spend your money wisely )''',
     '/help': '''try text your notes like expence price''',
@@ -69,18 +67,21 @@ LEXICON_NONFOOD: dict[str, str] = {
     'services':'услуги'
 }
 
-def find_value(my_dict, search_key):
-    for value in my_dict.values():  # проверяем ключ для каждого ключа
-        for k,v in value.items():
-            if k == search_key:
-                return value[k]
-    return None
-
 LEXICON_CHOICE = {'LEXICON_NOT_BASIC': LEXICON_NOT_BASIC,
                   'LEXICON_FOOD': LEXICON_FOOD,
                   'LEXICON_NONFOOD':LEXICON_NONFOOD}
 
 LEXICON_KEYS = {key: value for inner_dict in LEXICON_CHOICE.values() for key, value in inner_dict.items()}
+
+def find_value(my_dict, search_key):
+    """ищет соответствие категории в объединенном словаре"""
+    for dic in my_dict.values():  # проверяем ключ для каждого ключа
+        for k,v in dic.items():
+            if k == search_key:
+                return dic[k]
+    return None
+
+
 
 
 

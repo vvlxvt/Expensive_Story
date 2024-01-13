@@ -100,7 +100,6 @@ def del_last_note():
     session.close()
     return main_name
 
-
 def format_output(res:list[tuple])->list[str]:
     # фильтрует пустые значения из запроса по категориям за месяц
     # преобразует список кортежей в список строк
@@ -143,5 +142,3 @@ def dict_upload(dict_categories: dict):
             for elem in value:
                 set_value(elem, key)
         session.commit()
-
-

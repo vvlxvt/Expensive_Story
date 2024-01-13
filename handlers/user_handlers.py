@@ -35,7 +35,9 @@ async def get_today(message: Message):
 @router.message(Command(commands='week'))
 async def get_week(message: Message):
     res = get_stat_week()
+    print(res)
     total = round(spend_week(),2)
+    print(spend_week())
     await message.answer(text=f'  <b>{res}</b>\n С начала недели потрачено: {total} GEL ')
 
 @router.message(Command(commands='month'))

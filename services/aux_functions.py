@@ -3,7 +3,7 @@ import calendar
 
 def has_passed_month(reference_month):
     # возвращает true если месяц уже прошел с текущей даты
-    current_date = datetime.now()
+    current_date = datetime.now().replace(second=0, microsecond=0)
     last_month = current_date - timedelta(days=current_date.day)
     return last_month.month > reference_month
 
@@ -23,9 +23,10 @@ def get_month_range(month:str)->tuple:
     return start_date, end_date
 
 def get_week_range()->tuple:
-    current_datetime = datetime.now()
+    current_datetime = datetime.now().replace(second=0, microsecond=0)
     # Вычисляем начало текущей недели
     start_of_week = current_datetime - timedelta(days=current_datetime.weekday())
     return start_of_week, current_datetime
+print(get_week_range())
 
 
