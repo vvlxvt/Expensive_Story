@@ -8,13 +8,13 @@ from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_applicati
 
 conf = config.load_config(None)
 TOKEN = conf.tg_bot.token
-ADMIN_ID = int(conf.tg_bot.admin_id)
+ADMIN_IDS = conf.tg_bot.admin_ids
 
 WEB_SERVER_HOST = "0.0.0.0"
 WEB_SERVER_PORT = 80
 
 WEBHOOK_PATH = "/6006947703:AAFiIBqbYWhmZUl6l1crqb3ZbQI4CpiXkoU"
-BASE_WEBHOOK_URL = 'https://d47e-94-43-154-7.ngrok-free.app'
+BASE_WEBHOOK_URL = 'https://8722-94-43-154-7.ngrok-free.app'
 # BASE_WEBHOOK_URL = "https://expensive-story-vvlxvt.amvera.io"
 
 async def on_startup(bot: Bot) -> None:
@@ -51,3 +51,5 @@ def main() -> None:
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO, stream=sys.stdout)
     main()
+
+# Tanya_user-Id = '1194999116'

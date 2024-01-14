@@ -19,14 +19,12 @@ def get_month_range(month:str)->tuple:
         end_date = datetime(year, month_num+1, 1) - timedelta(days=1)
     start_date = datetime(year, month_num, 1)
     # Определение конца месяца путем перехода к следующему месяцу и вычитания одного дня
-    print('месяц', start_date, end_date, sep = ' ')
     return start_date, end_date
 
 def get_week_range()->tuple:
     current_datetime = datetime.now().replace(second=0, microsecond=0)
     # Вычисляем начало текущей недели
-    start_of_week = current_datetime - timedelta(days=current_datetime.weekday())
+    start_of_week = (current_datetime - timedelta(days=current_datetime.weekday())).date()
     return start_of_week, current_datetime
-print(get_week_range())
 
 

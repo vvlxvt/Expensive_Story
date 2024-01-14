@@ -5,12 +5,12 @@ from keyboards.subname_kb import add_subname_kb
 from lexicon.lexicon import LEXICON_FOOD, LEXICON_NONFOOD, LEXICON_SUBNAMES, LEXICON_KEYS
 from database.queue import no_subs
 from filters.filter import IsAdmin
-from bot import ADMIN_ID
+from bot import ADMIN_IDS
 
 router: Router = Router()
 
 
-@router.message(IsAdmin(ADMIN_ID))
+@router.message(IsAdmin(ADMIN_IDS))
 async def add_note(message: Message):
     # обрабатывает любое сообщение пользователя с трат-ой/-ами
     # добавляет трату в БД

@@ -61,7 +61,6 @@ def get_subname(elem):
         stmt = session.query(DictTable.cat).filter_by(name=elem).first()
     except Exception as e:
         print(f"Unexpected error: {e}")
-    print('get_subname', stmt)
     return stmt
 
 
@@ -124,9 +123,10 @@ def get_stat_week():
     return '\n'.join(format_output(result))
 
 def spend_today():
-    today = datetime.now().replace(second=0, microsecond=0)
-    result = session.query(func.sum(MainTable.price))\
-        .filter(func.DATE(MainTable.created) == today).scalar()
+    start_date = datetime.today().date()
+    end_date = datetime.now().replace(second=0, microsecond=0)
+    result = session.query(func.round(func.sum(MainTable.price),2))\
+            .filter(func.DATE(MainTable.created) >= start_date, func.DATE(MainTable.created) <= end_date).scalar()
     return result
 
 def spend_week():
