@@ -2,23 +2,32 @@ from datetime import datetime, timedelta
 import calendar
 
 def has_passed_month(reference_month):
-    # возвращает true если месяц уже прошел с текущей даты
-    current_date = datetime.now().replace(second=0, microsecond=0)
-    last_month = current_date - timedelta(days=current_date.day)
-    return last_month.month > reference_month
+    # возвращает true если месяц этого года уже прошел с текущей даты
+    year = datetime.now().year
+    current_date = datetime.today()
+    reference_date = datetime(year, reference_month, 1)
+    print('запрашиваемый год', reference_date)
+    return current_date > reference_date
+
 
 def get_month_range(month:str)->tuple:
     # получаем даты начала и конца запрашиваемого месяца
     year = datetime.now().year
     month_num = list(calendar.month_abbr).index(month.capitalize())
-    if has_passed_month(month_num):
-        year-= 1 # получаем текущий год
-    if month_num == 12:
-        end_date = datetime(year + 1, 1, 1) - timedelta(days=1)
-    else:
-        end_date = datetime(year, month_num+1, 1) - timedelta(days=1)
-    start_date = datetime(year, month_num, 1)
-    # Определение конца месяца путем перехода к следующему месяцу и вычитания одного дня
+
+def get_month_range(month: str) -> tuple:
+    # получаем даты начала и конца запрашиваемого месяца
+    desired_month = list(calendar.month_abbr).index(month.capitalize())
+    desired_year = datetime.now().year  # Год текущей даты
+
+    # Если указанный месяц текущего года еще не наступил, выбираем такой же месяц предыдущего года
+    current_month = datetime.now().month
+    if current_month < desired_month:
+        desired_year -= 1
+
+    # Вычисляем начало и конец периода месяца
+    start_date = datetime(desired_year, desired_month, 1)
+    end_date = start_date.replace(month=start_date.month % 12 + 1, day=1) - timedelta(days=1)
     return start_date, end_date
 
 def get_week_range()->tuple:
@@ -26,5 +35,4 @@ def get_week_range()->tuple:
     # Вычисляем начало текущей недели
     start_of_week = (current_datetime - timedelta(days=current_datetime.weekday())).date()
     return start_of_week, current_datetime
-
 

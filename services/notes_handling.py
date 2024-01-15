@@ -26,10 +26,16 @@ def split_expense(message: str) ->list[str]:
         res.append(message)
         return res
 
+def comma_replace(num: str)->str:
+    if ',' in num:
+        num = num.replace(',', '.')
+    return num
+
 def make_expense(message: str, user_id: int)->Expense:
     # преообразует строчку с тратой в обьект Expense
     name, price = make_name_price(message)
     name = name.lower()
+    price = comma_replace(price)
     today = datetime.now().replace(second=0, microsecond=0)
     cat = get_subname(name)
     if cat != None:
@@ -64,17 +70,12 @@ def form_expense_instance(no_subs: Queue, callback: CallbackQuery)->Expense:
     '''преобразует траты без категории в класс Expense'''
     name = no_subs.peek()[0]
     sub_name = find_value(LEXICON_CHOICE, callback.data)
-    # вставить сюда поиск соответствия категории по нажатой кнопке
     price = no_subs.peek()[1]
     today = datetime.now().replace(second=0, microsecond=0)
     raw_message = no_subs.peek()[2]
     user_id = callback.from_user.id
     flag = True
     return Expense(name, sub_name, price, today, raw_message, user_id, flag)
-
-
-
-
 
 
 
