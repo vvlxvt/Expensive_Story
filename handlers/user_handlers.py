@@ -35,15 +35,18 @@ async def get_today(message: Message):
 @router.message(Command(commands='week'))
 async def get_week(message: Message):
     res = get_stat_week()
-    print(res)
     total = round(spend_week(),2)
-    print(spend_week())
     await message.answer(text=f'  <b>{res}</b>\n С начала недели потрачено: {total} GEL ')
 
 @router.message(Command(commands='month'))
 async def get_month(message: Message):
     text = 'За какой месяц показать статистику?'
     await message.answer( text=text, reply_markup=add_subname_kb(**LEXICON_MONTH))
+
+@router.message(Command(commands='my_10'))
+async def get_month(message: Message):
+    text = 'Мои последние 10 трат'
+    await message.answer( text=text)
 
 @router.callback_query(F.data.in_(LEXICON_MONTH.keys()))
 async def process_chose_month(callback: CallbackQuery):

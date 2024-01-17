@@ -26,7 +26,9 @@ LEXICON_COMMANDS: dict[str, str] = {
     '/del_last_note': 'удалить последнюю запись',
     '/today': 'траты за сегодня',
     '/week': 'траты за неделю',
-    '/month': 'траты за месяц'
+    '/month': 'траты за месяц',
+    '/my_10': 'мои 10 трат'
+
 }
 LEXICON_SUBNAMES: dict[str, str] = {
     'zephyr': 'зефир',
