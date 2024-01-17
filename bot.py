@@ -1,5 +1,6 @@
 import logging, sys
 import config
+from keyboards import set_main_menu
 from handlers import other_handlers, user_handlers
 from aiohttp import web
 from aiogram import Bot, Dispatcher
@@ -32,6 +33,7 @@ def main() -> None:
     # Initialize Bot instance with a default parse mode which will be passed to all API calls
     bot = Bot(TOKEN, parse_mode=ParseMode.HTML)
 
+    await set_main_menu()
     # Create aiohttp.web.Application instance
     app = web.Application()
 
