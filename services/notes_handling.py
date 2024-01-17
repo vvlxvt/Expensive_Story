@@ -17,6 +17,7 @@ def make_name_price(note: str) -> list:
     elif isinstance(res_2, re.Match):
         return res_2[2], res_2[1]
 
+
 def split_expense(message: str) ->list[str]:
     #если сообщение многострочное, преобразует сообщение в список строк
     res = []
@@ -37,9 +38,12 @@ def make_expense(message: str, user_id: int)->Expense:
     name = name.lower()
     price = comma_replace(price)
     today = datetime.now().replace(second=0, microsecond=0)
-    cat = get_subname(name)
-    if cat != None:
-        cat = cat[0]
+    if 'зефир' in name:
+        cat = 'зефир'
+    else:
+        cat = get_subname(name)
+        if cat:
+            cat = cat[0]
     return Expense(name, cat, price, today, message,user_id, False)
 
 def get_categories(row_messages: str, user_id: int)->str:

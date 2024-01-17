@@ -53,12 +53,12 @@ def set_value(value, key):
      session.commit()
      session.close()
 
-def get_subname(elem):
+def get_subname(item):
     try:
-        stmt = session.query(DictTable.cat).filter_by(name = elem).one_or_none()
+        stmt = session.query(DictTable.cat).filter_by(name = item).one_or_none()
     except MultipleResultsFound as e:
         print(f"MultipleResultsFound error: {e}")  # Дополнительный код для обработки ошибки
-        stmt = session.query(DictTable.cat).filter_by(name=elem).first()
+        stmt = session.query(DictTable.cat).filter_by(name=item).first()
     except Exception as e:
         print(f"Unexpected error: {e}")
     return stmt
