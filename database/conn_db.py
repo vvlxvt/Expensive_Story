@@ -150,4 +150,3 @@ def get_my_expenses(user_id):
         .limit(10)\
         .all()
     return '\n'.join(format_output(result))
-    return result
