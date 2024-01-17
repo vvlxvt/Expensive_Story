@@ -4,8 +4,7 @@ from aiogram.filters import Command, CommandStart
 from aiogram.types import CallbackQuery, Message
 from lexicon.lexicon import LEXICON, LEXICON_MONTH
 from keyboards.subname_kb import add_subname_kb
-from database.conn_db import spend_today, spend_week, get_my_expenses
-
+from database import *
 router: Router = Router()
 
 @router.message(CommandStart())
@@ -52,10 +51,13 @@ async def get_month(message: Message):
 
 @router.callback_query(F.data.in_(LEXICON_MONTH.keys()))
 async def process_chose_month(callback: CallbackQuery):
-    res = get_stat_month(callback.data)
+    month = callback.data
+    res = get_stat_month(month)
+    total = spend_month(month)
     month = LEXICON_MONTH[callback.data]
     await callback.message.delete_reply_markup()
-    await callback.message.answer(text=f'<u>Траты за <b>{month}</b>:</u> \n{res}')
+    await callback.message.answer(
+        text=f'<u>Траты за <b>{month}</b>:</u> \n{res}\n<b> ИТОГО: {total}</b> gel')
 
 
 

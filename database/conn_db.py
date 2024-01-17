@@ -6,8 +6,8 @@ from services.aux_functions import get_month_range, get_week_range
 from datetime import datetime
 
 
-# engine = create_engine('sqlite:///data/sqlite_database.db')
-engine = create_engine(f'sqlite:///../data/sqlite_database.db')
+engine = create_engine('sqlite:///data/sqlite_database.db')
+# engine = create_engine(f'sqlite:///../data/sqlite_database.db')
 
 # Создаём` объект MetaData
 meta = MetaData()
@@ -135,6 +135,12 @@ def spend_week():
                                                              func.DATE(MainTable.created) <= end_date).scalar()
     return result
 
+def spend_month(month):
+    start_date, end_date = get_month_range(month)
+    result = session.query(func.round(func.sum(MainTable.price),2)).filter(func.DATE(MainTable.created) >= start_date,
+                                                             func.DATE(MainTable.created) <= end_date).scalar()
+    return result
+
 def dict_upload(dict_categories: dict):
     with Session(engine) as session:
         for key, value in dict_categories.items():
@@ -144,9 +150,8 @@ def dict_upload(dict_categories: dict):
 
 
 def get_my_expenses(user_id):
-    result = session.query(MainTable.name, MainTable.price)\
+    result = session.query(MainTable.name, func.round(MainTable.price,2))\
         .filter(MainTable.user_id == user_id)\
         .order_by(MainTable.created.desc())\
-        .limit(10)\
-        .all()
+        .limit(10).all()
     return '\n'.join(format_output(result))

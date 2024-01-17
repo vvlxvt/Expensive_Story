@@ -15,11 +15,12 @@ WEB_SERVER_HOST = "0.0.0.0"
 WEB_SERVER_PORT = 80
 
 WEBHOOK_PATH = "/6006947703:AAFiIBqbYWhmZUl6l1crqb3ZbQI4CpiXkoU"
-# BASE_WEBHOOK_URL = 'https://8722-94-43-154-7.ngrok-free.app'
-BASE_WEBHOOK_URL = "https://expensive-story-vvlxvt.amvera.io"
+BASE_WEBHOOK_URL = 'https://3bfa-94-43-154-7.ngrok-free.app'
+# BASE_WEBHOOK_URL = "https://expensive-story-vvlxvt.amvera.io"
 
 async def on_startup(bot: Bot) -> None:
     await bot.set_webhook(f"{BASE_WEBHOOK_URL}{WEBHOOK_PATH}",)
+    await set_main_menu(bot)
 
 
 def main() -> None:
@@ -33,7 +34,7 @@ def main() -> None:
     # Initialize Bot instance with a default parse mode which will be passed to all API calls
     bot = Bot(TOKEN, parse_mode=ParseMode.HTML)
 
-    await set_main_menu()
+
     # Create aiohttp.web.Application instance
     app = web.Application()
 
