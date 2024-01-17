@@ -47,7 +47,7 @@ async def get_month(message: Message):
 async def get_month(message: Message):
     user_id = message.from_user.id
     result = get_my_expenses(user_id)
-    text = 'Мои последние 10 трат'
+    text = 'Мои последние 10 трат: '
     await message.answer( text = f' {text}\n {result} ')
 
 @router.callback_query(F.data.in_(LEXICON_MONTH.keys()))
