@@ -135,10 +135,19 @@ def spend_week():
                                                              func.DATE(MainTable.created) <= end_date).scalar()
     return result
 
-
 def dict_upload(dict_categories: dict):
     with Session(engine) as session:
         for key, value in dict_categories.items():
             for elem in value:
                 set_value(elem, key)
         session.commit()
+
+
+def get_my_expenses(user_id):
+    result = session.query(MainTable.name, MainTable.price)\
+        .filter(MainTable.user_id == user_id)\
+        .order_by(MainTable.created.desc())\
+        .limit(10)\
+        .all()
+    return '\n'.join(format_output(result))
+    return result
