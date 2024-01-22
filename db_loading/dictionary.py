@@ -41,27 +41,21 @@ Category = {
 import pandas as pd
 import numpy as np
 
+# создаю пустую таблицу для заполнения
 Dic_df = pd.DataFrame(columns=['name', 'cat'])
 
+# на основании категорий и товаров создаю таблицу для поиска по наименованию наподобие Redis
 for key, value in Category.items():
     data = {key:value}
     df = pd.DataFrame({'name':value})
     df['cat'] = np.repeat(key, len(value))
     Dic_df = pd.concat([Dic_df, df], ignore_index=True)
 Dic_df = Dic_df.sort_values(by='name')
-
-
-# column_series = pd.Series(name, index=name, name='name')
-# print(column_series)
-# Добавление столбца с категориями
-# df['Category'] = df['Name'].map(data)
-# print(df)
-# # Установка индекса по наименованиям
-# df.set_index('Name', inplace=True)
-
-
-# Заполнение пустых значений в столбце 'Name' значениями из предыдущей ячейки
-# df['Name'] = df['Name'].fillna(method='ffill')
+# Dic_df['id'] = range(1, len(Dic_df)+1)
+# Dic_df['id'] = Dic_df['id'].astype('int64')
+# Dic_df.set_index('id', inplace=True)
+Dic_df = Dic_df[['name', 'cat']]
+print(Dic_df)
 
 
 

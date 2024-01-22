@@ -6,8 +6,8 @@ from services.aux_functions import get_month_range, get_week_range
 from datetime import datetime
 
 
-# engine = create_engine('sqlite:///data/sqlite_database.db')
-engine = create_engine(f'sqlite:///../data/sqlite_database.db')
+engine = create_engine('sqlite:///data/master.db')
+# engine = create_engine(f'sqlite:///../data/sqlite_database.db')
 
 # Создаём` объект MetaData
 meta = MetaData()
