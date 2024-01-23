@@ -31,9 +31,8 @@ def find_cat(query):
     result = best_category
     return result if score > 70 else None
 
-# infinity = iter(int, 1)
-# for now in infinity:
-#     x = input('введите запрос: ')
-#     msg = pars_message(x)[0]
-#     print(find_cat(msg))
+# 1. необходимо обьединить 2 функции парсинга в 1
+# 2. сообщения которые не парсятся как надо, должны попадать в сырые сообщения без категории и цены
+# 3. провести соответствие категорий в выборе категории и парсинге
+
 
