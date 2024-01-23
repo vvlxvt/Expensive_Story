@@ -51,10 +51,8 @@ for key, value in Category.items():
     df['cat'] = np.repeat(key, len(value))
     Dic_df = pd.concat([Dic_df, df], ignore_index=True)
 Dic_df = Dic_df.sort_values(by='name')
-# Dic_df['id'] = range(1, len(Dic_df)+1)
-# Dic_df['id'] = Dic_df['id'].astype('int64')
-# Dic_df.set_index('id', inplace=True)
-Dic_df = Dic_df[['name', 'cat']]
+Dic_df['id'] = range(1, len(Dic_df)+1)
+Dic_df = Dic_df[["id",'name','cat']]
 print(Dic_df)
 
 
