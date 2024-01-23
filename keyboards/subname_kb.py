@@ -13,6 +13,7 @@ def add_subname_kb(**kwargs: dict[str, str]) -> InlineKeyboardMarkup:
     kb_builder.row(*buttons, width=2)
 
     kb_builder.row(InlineKeyboardButton(text=LEXICON_CANCEL['cancel'], callback_data='cancel'),width=1)
+
     return kb_builder.as_markup()
 
 

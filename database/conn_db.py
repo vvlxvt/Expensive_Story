@@ -112,6 +112,7 @@ def get_stat_month(mm: str):
         .filter(MainTable.created >= start_date, MainTable.created <= end_date)\
         .group_by(MainTable.sub_name)\
         .order_by(func.sum(MainTable.price).desc()).all()
+
     return '\n'.join(format_output(result))
 
 def get_stat_week():
@@ -150,8 +151,22 @@ def dict_upload(dict_categories: dict):
 
 
 def get_my_expenses(user_id):
+    user_id = 'user' + str(user_id)
     result = session.query(MainTable.name, func.round(MainTable.price,2))\
         .filter(MainTable.user_id == user_id)\
         .order_by(MainTable.created.desc())\
         .limit(10).all()
+    return '\n'.join(format_output(result))
+
+def get_another(start_date, end_date):
+    result = session.query(MainTable)\
+        .filter(MainTable.sub_name == "другое",
+        MainTable.created.between(start_date, end_date))\
+        .order_by(func.round(MainTable.price, 2)
+                  .desc()).all()
+
+    result = session.query(MainTable.name, func.round(MainTable.price, 2)) \
+        .filter(MainTable.created.between(start_date, end_date)) \
+        .filter(MainTable.sub_name == "другое")\
+        .order_by(MainTable.price.desc()).all()
     return '\n'.join(format_output(result))

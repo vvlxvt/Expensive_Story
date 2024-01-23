@@ -69,6 +69,10 @@ LEXICON_NONFOOD: dict[str, str] = {
     'services':'услуги'
 }
 
+LEXICON_ANOTHER: dict[str, str] = {
+    '_another':'_другое'
+}
+
 LEXICON_CHOICE = {'LEXICON_NOT_BASIC': LEXICON_NOT_BASIC,
                   'LEXICON_FOOD': LEXICON_FOOD,
                   'LEXICON_NONFOOD':LEXICON_NONFOOD}
