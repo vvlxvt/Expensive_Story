@@ -16,6 +16,8 @@ def make_name_price(note: str) -> list:
         return res_1[1], res_1[2]
     elif isinstance(res_2, re.Match):
         return res_2[2], res_2[1]
+    else:
+        return note, 0
 
 
 def split_expense(message: str) ->list[str]:

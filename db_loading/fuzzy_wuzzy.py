@@ -18,14 +18,18 @@ def pars_message(message: str) -> list:
     elif isinstance(x2, re.Match):
         return [x2[2], dots(x2[1])]
     else:
-        return ['message', '0']
+        return [message, '0']
 
 def find_cat(query):
+    # распакую весь словарь в одну строку наименований
     all_values = [value for values in Category.values() for value in values]
+
+    #нахожу лучшее совпадение и процент наименования из словаря с помощью модуля fuzzywuzzy
     best_match, score = process.extractOne(query, all_values)
+
     best_category = next(category for category, values in Category.items() if best_match in values)
     result = best_category
-    return result if score > 70 else 'другое'
+    return result if score > 70 else None
 
 # infinity = iter(int, 1)
 # for now in infinity:
