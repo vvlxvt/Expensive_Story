@@ -47,7 +47,6 @@ async def get_month(message: Message):
     result = get_my_expenses(user_id)
     text = 'Мои последние 10 трат: '
     await message.answer( text = f' {text}\n {result} ')
-    await message.answer()
 
 @router.callback_query(F.data.in_(LEXICON_MONTH.keys()))
 async def process_chose_month(callback: CallbackQuery):
