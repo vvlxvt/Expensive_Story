@@ -14,7 +14,7 @@
    "text_entities": [
     {
      "type": "plain",
-     "text": "Тыква 22.8\nЯблоки 2\nОгурцы, перцы, помидоры, лук 9.7\nСлива 4.4 кг по 1.8 = 7.9\nПерсик 2.5 по 3 = 7.5"
+     "text": "Тыква 22.8\nЯблоки 2\nОгурцы, перцы, помидоры, лук 9.7\nСлива 7.9\nПерсик 7.5"
     }
    ]
   },
@@ -880,7 +880,7 @@
    "date_unixtime": "1668006688",
    "from": "Vit",
    "from_id": "user541172529",
-   "text": "Хинкали 5.7\nКофе 2.2+2.2\nВино 6.9\nХлеб 3.2\nСпагетти 3.7\nЯблоки 2.3",
+   "text": "Хинкали 5.7\nКофе 4.4\nВино 6.9\nХлеб 3.2\nСпагетти 3.7\nЯблоки 2.3",
    "text_entities": [
     {
      "type": "plain",
@@ -1660,7 +1660,7 @@
    "date_unixtime": "1668803773",
    "from": "Vit",
    "from_id": "user541172529",
-   "text": "Мадарин 2 лари\nМыло 1.4\nМинералка 1.5\nЛимон 0.85\nШоти 2.6",
+   "text": "Мадарин 2\nМыло 1.4\nМинералка 1.5\nЛимон 0.85\nШоти 2.6",
    "text_entities": [
     {
      "type": "plain",
@@ -1675,7 +1675,7 @@
    "date_unixtime": "1668837237",
    "from": "Vit",
    "from_id": "user541172529",
-   "text": "3.2\nСыр 5\nМолоко 5.2\nКолбаса 10.85",
+   "text": "3.2 хлеб\nСыр 5\nМолоко 5.2\nКолбаса 10.85",
    "text_entities": [
     {
      "type": "plain",
@@ -1960,7 +1960,7 @@
    "date_unixtime": "1669019652",
    "from": "Татьяна",
    "from_id": "user1194999116",
-   "text": "5,2 корм уличной Собчаке\n1л кофе",
+   "text": "5,2 корм собаке\n1 кофе",
    "text_entities": [
     {
      "type": "plain",
@@ -2659,21 +2659,6 @@
    ]
   },
   {
-   "id": 4743,
-   "type": "message",
-   "date": "2022-11-29T20:34:08",
-   "date_unixtime": "1669739648",
-   "from": "Татьяна",
-   "from_id": "user1194999116",
-   "text": "Обмен 200 евро 561",
-   "text_entities": [
-    {
-     "type": "plain",
-     "text": "Обменяла 200 евро на 561л"
-    }
-   ]
-  },
-  {
    "id": 4744,
    "type": "message",
    "date": "2022-11-29T20:34:16",
@@ -3265,7 +3250,7 @@
    "date_unixtime": "1670496791",
    "from": "Vit",
    "from_id": "user541172529",
-   "text": "Фасадная краска 29\nХачапури+пирожок 4",
+   "text": "Фасадная краска 29\nХачапури 4",
    "text_entities": [
     {
      "type": "plain",
@@ -3775,7 +3760,7 @@
    "date_unixtime": "1671100369",
    "from": "Vit",
    "from_id": "user541172529",
-   "text": "Connection set wc 30\nХачапури 2.5",
+   "text": "Труба для инсталяции 30\nХачапури 2.5",
    "text_entities": [
     {
      "type": "plain",
@@ -3812,19 +3797,6 @@
      "text": "Двери (аванс) 300"
     }
    ]
-  },
-  {
-   "id": 4977,
-   "type": "service",
-   "date": "2022-12-15T14:52:44",
-   "date_unixtime": "1671101564",
-   "actor": "Vit",
-   "actor_id": "user541172529",
-   "action": "phone_call",
-   "duration_seconds": 13,
-   "discard_reason": "hangup",
-   "text": "",
-   "text_entities": []
   },
   {
    "id": 4978,
@@ -3878,7 +3850,7 @@
    "date_unixtime": "1671186440",
    "from": "Vit",
    "from_id": "user541172529",
-   "text": "Пластины 12\nСкребок + Лезвия 11",
+   "text": "Пластины 12\nСкребок 11",
    "text_entities": [
     {
      "type": "plain",
@@ -4763,7 +4735,7 @@
    "date_unixtime": "1672408452",
    "from": "Татьяна",
    "from_id": "user1194999116",
-   "text": "шампанское 16\n15 рафаэло \nсыр 13,4\nхлеб 5.4\n5 Майонез\n10 соленые огурцы\n",
+   "text": "шампанское 16\n15 рафаэло \nсыр 13,4\nхлеб 5.4\n5 Майонез\n10 соленые огурцы",
    "text_entities": [
     {
      "type": "plain",
@@ -5618,7 +5590,7 @@
    "date_unixtime": "1673532221",
    "from": "Vit",
    "from_id": "user541172529",
-   "text": "Душевая 875 (+250 ранее)",
+   "text": "Душевая 875",
    "text_entities": [
     {
      "type": "plain",
@@ -5653,36 +5625,6 @@
     {
      "type": "plain",
      "text": "Такси 4"
-    }
-   ]
-  },
-  {
-   "id": 5401,
-   "type": "message",
-   "date": "2023-01-13T20:11:55",
-   "date_unixtime": "1673626315",
-   "from": "Vit",
-   "from_id": "user541172529",
-   "text": "Обмен 80(диван)+10(подарок Уле) на 720+575=1295$",
-   "text_entities": [
-    {
-     "type": "plain",
-     "text": "Обмен 80(диван)+10(подарок Уле) на 720+575=1295$"
-    }
-   ]
-  },
-  {
-   "id": 5402,
-   "type": "message",
-   "date": "2023-01-13T20:16:10",
-   "date_unixtime": "1673626570",
-   "from": "Vit",
-   "from_id": "user541172529",
-   "text": "Получение 1000$+780лари",
-   "text_entities": [
-    {
-     "type": "plain",
-     "text": "Получение 1000$+780лари"
     }
    ]
   },
@@ -5753,7 +5695,7 @@
    "date_unixtime": "1673635641",
    "from": "Vit",
    "from_id": "user541172529",
-   "text": "Творог 4.75+2.95",
+   "text": "Творог 7.7",
    "text_entities": [
     {
      "type": "plain",
@@ -5993,7 +5935,7 @@
    "date_unixtime": "1673950912",
    "from": "Vit",
    "from_id": "user541172529",
-   "text": "Овощи 8.4+3.15=11.55",
+   "text": "Овощи 11.55",
    "text_entities": [
     {
      "type": "plain",
@@ -6497,21 +6439,6 @@
    ]
   },
   {
-   "id": 5518,
-   "type": "message",
-   "date": "2023-01-26T12:42:21",
-   "date_unixtime": "1674722541",
-   "from": "Vit",
-   "from_id": "user541172529",
-   "text": "Получение 200$+26.35лари (продажа авто кресла)",
-   "text_entities": [
-    {
-     "type": "plain",
-     "text": "Получение 200$+26.35лари (продажа авто кресла)"
-    }
-   ]
-  },
-  {
    "id": 5519,
    "type": "message",
    "date": "2023-01-26T13:13:36",
@@ -6923,7 +6850,7 @@
    "date_unixtime": "1675092150",
    "from": "Vit",
    "from_id": "user541172529",
-   "text": "Обрезка кафель 30\nТакчи 4.4+2.2",
+   "text": "Обрезка кафель 30\nТакси 6.6",
    "text_entities": [
     {
      "type": "plain",
@@ -7283,7 +7210,7 @@
    "date_unixtime": "1675796556",
    "from": "Татьяна",
    "from_id": "user1194999116",
-   "text": "Картофель\nПомидоры\nПерец 10",
+   "text": "Картофель Помидоры Перец 10",
    "text_entities": [
     {
      "type": "plain",
@@ -7392,7 +7319,7 @@
    "text_entities": [
     {
      "type": "plain",
-     "text": "-6,39 кофе\n+6,39 мука"
+     "text": "6,39 кофе\n6,39 мука"
     }
    ]
   },
@@ -8034,7 +7961,7 @@
    "date_unixtime": "1676979440",
    "from": "Vit",
    "from_id": "user541172529",
-   "text": "Молоко 3.9\nЛаска для шерсти 10.5\nФейри 3.3\nКартофель 5.2\nЛемон 0.8\nХлеб 2.5\nСкотч Бумажный 6+2",
+   "text": "Молоко 3.9\nЛаска для шерсти 10.5\nФейри 3.3\nКартофель 5.2\nЛемон 0.8\nХлеб 2.5\nСкотч Бумажный 8",
    "text_entities": [
     {
      "type": "plain",
@@ -9384,7 +9311,7 @@
    "date_unixtime": "1679140812",
    "from": "Vit",
    "from_id": "user541172529",
-   "text": "Кофе\" 3 в 1\" 1.5",
+   "text": "Кофе 1.5",
    "text_entities": [
     {
      "type": "plain",
@@ -9423,28 +9350,13 @@
    ]
   },
   {
-   "id": 6585,
-   "type": "message",
-   "date": "2023-03-18T20:23:28",
-   "date_unixtime": "1679156608",
-   "from": "Татьяна",
-   "from_id": "user1194999116",
-   "text": "39,16 назилбэ",
-   "text_entities": [
-    {
-     "type": "plain",
-     "text": "39,16 назилбэ"
-    }
-   ]
-  },
-  {
    "id": 6587,
    "type": "message",
    "date": "2023-03-18T22:17:16",
    "date_unixtime": "1679163436",
    "from": "Vit",
    "from_id": "user541172529",
-   "text": "В нем сахар 4.3 сливки 5.8 молоко 3.9 мука 6 сыр 12.3 тряпки 1.7 губки 2.5 плёнка пищевая 1.7",
+   "text": "сахар 4.3\nсливки 5.8\nмолоко 3.9\nмука 6\nсыр 12.3\nтряпки 1.7\nгубки 2.5\nплёнка пищевая 1.7",
    "text_entities": [
     {
      "type": "plain",
@@ -9774,7 +9686,7 @@
    "date_unixtime": "1679760578",
    "from": "Татьяна",
    "from_id": "user1194999116",
-   "text": "3,5 йогурт\nмин.вода",
+   "text": "2,5 йогурт\nмин.вода 1",
    "text_entities": [
     {
      "type": "plain",
@@ -9963,21 +9875,6 @@
    ]
   },
   {
-   "id": 6666,
-   "type": "message",
-   "date": "2023-04-01T20:10:03",
-   "date_unixtime": "1680365403",
-   "from": "Татьяна",
-   "from_id": "user1194999116",
-   "text": "Это не газ?",
-   "text_entities": [
-    {
-     "type": "plain",
-     "text": "Это не газ?"
-    }
-   ]
-  },
-  {
    "id": 6667,
    "type": "message",
    "date": "2023-04-01T20:39:57",
@@ -9993,58 +9890,13 @@
    ]
   },
   {
-   "id": 6668,
-   "type": "message",
-   "date": "2023-04-01T20:40:04",
-   "date_unixtime": "1680367204",
-   "from": "Vit",
-   "from_id": "user541172529",
-   "text": "На газ не хватит",
-   "text_entities": [
-    {
-     "type": "plain",
-     "text": "На газ не хватит"
-    }
-   ]
-  },
-  {
-   "id": 6669,
-   "type": "message",
-   "date": "2023-04-01T22:38:23",
-   "date_unixtime": "1680374303",
-   "from": "Татьяна",
-   "from_id": "user1194999116",
-   "text": "Сколько газ вышел?",
-   "text_entities": [
-    {
-     "type": "plain",
-     "text": "Сколько газ вышел?"
-    }
-   ]
-  },
-  {
-   "id": 6670,
-   "type": "message",
-   "date": "2023-04-01T22:38:34",
-   "date_unixtime": "1680374314",
-   "from": "Татьяна",
-   "from_id": "user1194999116",
-   "text": "Завтра положу",
-   "text_entities": [
-    {
-     "type": "plain",
-     "text": "Завтра положу"
-    }
-   ]
-  },
-  {
    "id": 6672,
    "type": "message",
    "date": "2023-04-02T15:27:06",
    "date_unixtime": "1680434826",
    "from": "Татьяна",
    "from_id": "user1194999116",
-   "text": "7,95 норм водоросли \n3,75 мука для пиццы\n4,75 васаби\n13 масло сливочное\n1,05 туалет бумага\n13.3 творог\n3.25 ржаная мука \n1,6 бумага для выпечки",
+   "text": "7,95 водоросли\n3,75 мука для пиццы\n4,75 васаби\n13 масло сливочное\n1,05 туалет бумага\n13.3 творог\n3.25 ржаная мука \n1,6 бумага для выпечки",
    "text_entities": [
     {
      "type": "plain",
@@ -10089,7 +9941,7 @@
    "date_unixtime": "1680434909",
    "from": "Татьяна",
    "from_id": "user1194999116",
-   "text": "6,25 назилбэ",
+   "text": "6,25 продукты назилбэ",
    "text_entities": [
     {
      "type": "plain",
@@ -10104,7 +9956,7 @@
    "date_unixtime": "1680434999",
    "from": "Татьяна",
    "from_id": "user1194999116",
-   "text": "9 сок (2 р списали)",
+   "text": "9 сок",
    "text_entities": [
     {
      "type": "plain",
@@ -10119,7 +9971,7 @@
    "date_unixtime": "1680435028",
    "from": "Татьяна",
    "from_id": "user1194999116",
-   "text": "16 кофе и круассан",
+   "text": "16 кафе",
    "text_entities": [
     {
      "type": "plain",
@@ -10134,7 +9986,7 @@
    "date_unixtime": "1680435048",
    "from": "Татьяна",
    "from_id": "user1194999116",
-   "text": "21.13 колбаска печенье",
+   "text": "18.13 колбаса\n3 печенье",
    "text_entities": [
     {
      "type": "plain",
@@ -10149,7 +10001,7 @@
    "date_unixtime": "1680435066",
    "from": "Татьяна",
    "from_id": "user1194999116",
-   "text": "9,5 упаковка для зефира",
+   "text": "9,5 упаковка (зефир)",
    "text_entities": [
     {
      "type": "plain",
@@ -10359,7 +10211,7 @@
    "date_unixtime": "1680866214",
    "from": "Татьяна",
    "from_id": "user1194999116",
-   "text": "33,55 горький шоколад и коробочки",
+   "text": "33,55 горький шоколад коробочки",
    "text_entities": [
     {
      "type": "plain",
@@ -10389,7 +10241,7 @@
    "date_unixtime": "1680882264",
    "from": "Татьяна",
    "from_id": "user1194999116",
-   "text": "2,5л  хлеб\n20 корм несевику",
+   "text": "2,5  хлеб\n20 корм несевику",
    "text_entities": [
     {
      "type": "plain",
@@ -11589,7 +11441,7 @@
    "date_unixtime": "1683298270",
    "from": "Vit",
    "from_id": "user541172529",
-   "text": "Яблоки+бананы 8\nЯйца 12. 25\nМука 2.95\nЛимонная кислота 1.8",
+   "text": "Яблоки и бананы 8\nЯйца 12. 25\nМука 2.95\nЛимонная кислота 1.8",
    "text_entities": [
     {
      "type": "plain",
@@ -13909,20 +13761,6 @@
     }
    ]
   },
-
-  {
-   "id": 7354,
-   "type": "message",
-   "date": "2023-06-18T15:11:53",
-   "date_unixtime": "1687086713",
-   "from": "Татьяна",
-   "from_id": "user1194999116",
-   "photo": "(File not included. Change data exporting settings to download.)",
-   "width": 960,
-   "height": 1280,
-   "text": "",
-   "text_entities": []
-  },
   {
    "id": 7425,
    "type": "message",
@@ -14050,7 +13888,7 @@
    "date_unixtime": "1687251934",
    "from": "Vit",
    "from_id": "user541172529",
-   "text": "Перевод +180 лари\nКурица 11.3\nПиво 7\nШампунь 6\nЧипсы 2.8\nЗелень 0.78\nМорковь 1.16\nЯйца 3.5",
+   "text": "Курица 11.3\nПиво 7\nШампунь 6\nЧипсы 2.8\nЗелень 0.78\nМорковь 1.16\nЯйца 3.5",
    "text_entities": [
     {
      "type": "plain",
@@ -14524,30 +14362,6 @@
    ]
   },
   {
-   "id": 7663,
-   "type": "service",
-   "date": "2023-06-27T17:59:11",
-   "date_unixtime": "1687874351",
-   "actor": "Vit",
-   "actor_id": "user541172529",
-   "action": "phone_call",
-   "discard_reason": "missed",
-   "text": "",
-   "text_entities": []
-  },
-  {
-   "id": 7664,
-   "type": "service",
-   "date": "2023-06-27T17:59:44",
-   "date_unixtime": "1687874384",
-   "actor": "Vit",
-   "actor_id": "user541172529",
-   "action": "phone_call",
-   "discard_reason": "missed",
-   "text": "",
-   "text_entities": []
-  },
-  {
    "id": 7729,
    "type": "message",
    "date": "2023-06-28T17:40:11",
@@ -14983,21 +14797,6 @@
    ]
   },
   {
-   "id": 8090,
-   "type": "message",
-   "date": "2023-07-05T16:12:15",
-   "date_unixtime": "1688559135",
-   "from": "Vit",
-   "from_id": "user541172529",
-   "text": "+ 300 лари",
-   "text_entities": [
-    {
-     "type": "plain",
-     "text": "+ 300 лари"
-    }
-   ]
-  },
-  {
    "id": 8091,
    "type": "message",
    "date": "2023-07-05T16:16:19",
@@ -15324,21 +15123,6 @@
     {
      "type": "plain",
      "text": "Шоти 1.3"
-    }
-   ]
-  },
-  {
-   "id": 8299,
-   "type": "message",
-   "date": "2023-07-11T14:29:34",
-   "date_unixtime": "1689071374",
-   "from": "Vit",
-   "from_id": "user541172529",
-   "text": "+Золотая корона 370",
-   "text_entities": [
-    {
-     "type": "plain",
-     "text": "+Золотая корона 370"
     }
    ]
   },
@@ -15859,7 +15643,7 @@
    "date_unixtime": "1689919211",
    "from": "Vit",
    "from_id": "user541172529",
-   "text": "Корм Неквику",
+   "text": "Корм Неквику 10",
    "text_entities": [
     {
      "type": "plain",
@@ -16384,7 +16168,7 @@
    "date_unixtime": "1690632665",
    "from": "Vit",
    "from_id": "user541172529",
-   "text": "Корм котам 20\n+1600 лари на мебель",
+   "text": "Корм котам 20",
    "text_entities": [
     {
      "type": "plain",
@@ -16620,19 +16404,6 @@
    ]
   },
   {
-   "id": 8811,
-   "type": "message",
-   "date": "2023-08-01T13:01:46",
-   "date_unixtime": "1690880506",
-   "from": "Vit",
-   "from_id": "user541172529",
-   "photo": "(File not included. Change data exporting settings to download.)",
-   "width": 1280,
-   "height": 853,
-   "text": "",
-   "text_entities": []
-  },
-  {
    "id": 8815,
    "type": "message",
    "date": "2023-08-01T14:49:56",
@@ -16654,7 +16425,7 @@
    "date_unixtime": "1690887393",
    "from": "Vit",
    "from_id": "user541172529",
-   "text": "Марля и хлокгексидин 4.6\nСпагетти 6\nКофе Турецкий 6",
+   "text": "аптека 4.6\nСпагетти 6\nКофе Турецкий 6",
    "text_entities": [
     {
      "type": "plain",
@@ -17886,11 +17657,11 @@
    "date_unixtime": "1692543198",
    "from": "Vit",
    "from_id": "user541172529",
-   "text": "Миндальный лепесток (зефир) 11.92\nКакао-масло (зефир) 4.42\nШоколад тёмный (зефир) 11.34\nШоколад белый (зефир) 11.\n18",
+   "text": "Миндальный лепесток (зефир) 11.92\nКакао-масло (зефир) 4.42\nШоколад тёмный (зефир) 11.34\nШоколад белый (зефир) 11.2",
    "text_entities": [
     {
      "type": "plain",
-     "text": "Миндальный лепесток (зефир) 11.92\nКакао-масло (зефир) 4.42\nШоколад тёмный (зефир) 11.34\nШоколад белый (зефир) 11.\n18"
+     "text": "Миндальный лепесток (зефир) 11.92\nКакао-масло (зефир) 4.42\nШоколад тёмный (зефир) 11.34\nШоколад белый (зефир) 11.2\n"
     }
    ]
   },
@@ -18060,71 +17831,6 @@
      "text": "Молоко 4.2\nСметана 3.7\nСыр копченый 4.75\nЛаваш 1.2"
     }
    ]
-  },
-  {
-   "id": 9037,
-   "type": "service",
-   "date": "2023-08-23T11:27:36",
-   "date_unixtime": "1692775656",
-   "actor": "Vit",
-   "actor_id": "user541172529",
-   "action": "phone_call",
-   "duration_seconds": 10,
-   "discard_reason": "hangup",
-   "text": "",
-   "text_entities": []
-  },
-  {
-   "id": 9038,
-   "type": "service",
-   "date": "2023-08-23T11:28:02",
-   "date_unixtime": "1692775682",
-   "actor": "Vit",
-   "actor_id": "user541172529",
-   "action": "phone_call",
-   "duration_seconds": 12,
-   "discard_reason": "hangup",
-   "text": "",
-   "text_entities": []
-  },
-  {
-   "id": 9039,
-   "type": "service",
-   "date": "2023-08-23T11:29:36",
-   "date_unixtime": "1692775776",
-   "actor": "Vit",
-   "actor_id": "user541172529",
-   "action": "phone_call",
-   "duration_seconds": 40,
-   "discard_reason": "hangup",
-   "text": "",
-   "text_entities": []
-  },
-  {
-   "id": 9040,
-   "type": "service",
-   "date": "2023-08-23T11:58:11",
-   "date_unixtime": "1692777491",
-   "actor": "Vit",
-   "actor_id": "user541172529",
-   "action": "phone_call",
-   "duration_seconds": 24,
-   "discard_reason": "hangup",
-   "text": "",
-   "text_entities": []
-  },
-  {
-   "id": 9041,
-   "type": "service",
-   "date": "2023-08-23T13:10:07",
-   "date_unixtime": "1692781807",
-   "actor": "Vit",
-   "actor_id": "user541172529",
-   "action": "phone_call",
-   "duration_seconds": 41,
-   "discard_reason": "hangup",
-   "text": "",
-   "text_entities": []
   },
   {
    "id": 9042,
@@ -19766,20 +19472,6 @@
      "text": "Корм Несквику 10\nСыр 27\nПиво 7\nМолоко 4.5\nТеатральная студия 155\nКофе 0.45\nАразис 4\nЯйца 3\nОвощи 6.4"
     }
    ]
-  },
-  {
-   "id": 9954,
-   "type": "message",
-   "date": "2023-09-16T11:47:54",
-   "date_unixtime": "1694850474",
-   "from": "Vit",
-   "from_id": "user541172529",
-   "location_information": {
-    "latitude": 41.654614,
-    "longitude": 41.629375
-   },
-   "text": "",
-   "text_entities": []
   },
   {
    "id": 9955,
