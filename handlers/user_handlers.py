@@ -2,7 +2,7 @@ from aiogram import Router, F
 from aiogram.filters import Command, CommandStart
 from aiogram.types import CallbackQuery, Message
 from lexicon.lexicon import LEXICON, LEXICON_MONTH, LEXICON_ANOTHER
-from keyboards.subname_kb import add_subname_kb
+from keyboards.subname_kb import add_subname_kb, another_kb
 from database import *
 router: Router = Router()
 
@@ -47,6 +47,7 @@ async def get_month(message: Message):
     result = get_my_expenses(user_id)
     text = 'Мои последние 10 трат: '
     await message.answer( text = f' {text}\n {result} ')
+    await message.answer()
 
 @router.callback_query(F.data.in_(LEXICON_MONTH.keys()))
 async def process_chose_month(callback: CallbackQuery):
@@ -54,18 +55,22 @@ async def process_chose_month(callback: CallbackQuery):
     res = get_stat_month(month)
     total = spend_month(month)
     name_month = LEXICON_MONTH[callback.data]
-    await callback.message.answer(
+    await callback.message.edit_text(
         text=f'<u>Траты за <b>{name_month}</b>:</u> \n{res}\n<b> ИТОГО: {total}</b> gel')
     await callback.message.answer(text=f'Показать подробно категорию ДРУГОЕ?')
-    await callback.message.edit_text(text=month, reply_markup=add_subname_kb(**LEXICON_ANOTHER))
+    await callback.message.answer(text=month, reply_markup=another_kb(**LEXICON_ANOTHER))
 
 @router.callback_query(F.data=='_another')
 async def show_another(callback: CallbackQuery):
     month = callback.message.text
-    print(month)
     start_date, end_date = get_month_range(month)
     result = get_another(start_date, end_date)
     await callback.message.answer(
-        text=f'<u>Другое за <b>{month}</b>:</u> \n{result}\n')
+        text=f'<u>Другое за <b>{LEXICON_MONTH[month]}</b>:</u> \n{result}\n')
     await callback.message.delete_reply_markup()
+
+@router.callback_query(F.data=='_cancel')
+async def cancel_add_expense(callback: CallbackQuery):
+        await callback.message.edit_text(text = 'отмена')
+        await callback.message.delete_reply_markup()
 

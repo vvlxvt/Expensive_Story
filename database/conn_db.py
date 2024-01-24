@@ -143,6 +143,7 @@ def spend_month(month):
     return result
 
 def dict_upload(dict_categories: dict):
+
     with Session(engine) as session:
         for key, value in dict_categories.items():
             for elem in value:
@@ -151,6 +152,7 @@ def dict_upload(dict_categories: dict):
 
 
 def get_my_expenses(user_id):
+
     user_id = 'user' + str(user_id)
     result = session.query(MainTable.name, func.round(MainTable.price,2))\
         .filter(MainTable.user_id == user_id)\
@@ -159,11 +161,6 @@ def get_my_expenses(user_id):
     return '\n'.join(format_output(result))
 
 def get_another(start_date, end_date):
-    result = session.query(MainTable)\
-        .filter(MainTable.sub_name == "другое",
-        MainTable.created.between(start_date, end_date))\
-        .order_by(func.round(MainTable.price, 2)
-                  .desc()).all()
 
     result = session.query(MainTable.name, func.round(MainTable.price, 2)) \
         .filter(MainTable.created.between(start_date, end_date)) \

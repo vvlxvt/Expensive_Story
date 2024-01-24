@@ -16,7 +16,17 @@ def add_subname_kb(**kwargs: dict[str, str]) -> InlineKeyboardMarkup:
 
     return kb_builder.as_markup()
 
+def another_kb(**kwargs: dict[str, str]) -> InlineKeyboardMarkup:
+    kb_builder = InlineKeyboardBuilder()
+    buttons: list[InlineKeyboardButton] = []
 
+    for button, text in kwargs.items():
+        buttons.append(InlineKeyboardButton(text=text, callback_data=button))
+
+        # Распаковываем список с кнопками в билдер методом row c параметром width
+    kb_builder.row(*buttons, width=2)
+
+    return kb_builder.as_markup()
 
 
 

@@ -42,6 +42,8 @@ def make_expense(message: str, user_id: int)->Expense:
     today = datetime.now().replace(second=0, microsecond=0)
     if 'зефир' in name:
         cat = 'зефир'
+    elif int(price) > 150:
+        cat = 'крупная покупка'
     else:
         cat = get_subname(name)
         if cat:
@@ -64,7 +66,7 @@ def get_categories(row_messages: str, user_id: int)->str:
                 #добавляю в очередь товаров без категории
                 no_subs.queue((expense.name,expense.price,expense.raw),)
         except TypeError as e:
-            all_subnames.append('unrecognized')
+            all_subnames.append('без категории')
             # если сообщение не парсится оно просто записывается в столбец "сырых сообщений" raw
             today = datetime.now().replace(second=0, microsecond=0)
             expense = Expense(None,None,None,today,message,user_id, None)
