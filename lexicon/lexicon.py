@@ -36,12 +36,33 @@ LEXICON_SUBNAMES: dict[str, str] = {
     'pets': 'животные',
     'big_expense':'крупные траты',
     'food': 'основные продукты',
-    'non_food': 'неосн.продукты \nи услуги'}
+    'non_food': 'неосн. продукты'}
+
+зефир
+Уля
+животные
+
+овощи фрукты молочка мясо
+хлеб яйца п/фабрикаты крупы
+др. продукты
+
+алкоголь
+вкусняшки
+напитки
+бытовая химия
+связь
+коммуналка
+ремонт
+кафе
+аптека
+транспорт
+услуги
 
 LEXICON_NOT_BASIC: dict[str, str] = {
     'zephyr': 'зефир',
     'ulya': 'Уля',
     'pets': 'животные',
+    "farmacy":"аптека",
     'big_expense': 'крупные траты'
 }
 
@@ -54,7 +75,7 @@ LEXICON_FOOD: dict[str, str] = {
     'eggs':'яйца',
     'semi-finished':'полуфабрикаты',
     'cereals':'крупы',
-    'another':'другие продукты'
+    'another':'др. продукты'
 }
 
 LEXICON_NONFOOD: dict[str, str] = {
@@ -66,7 +87,9 @@ LEXICON_NONFOOD: dict[str, str] = {
     'utilities':'коммуналка',
     'cafe':'кафе',
     'taxi':'транспорт',
-    'services':'услуги'
+
+    'services':'услуги',
+    "renovation": 'ремонт'
 }
 
 LEXICON_ANOTHER: dict[str, str] = {
