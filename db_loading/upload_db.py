@@ -1,7 +1,7 @@
 import pandas as pd
 import json
 from sqlalchemy import create_engine, Column, DateTime, String, MetaData, Table, Integer, text
-from db_loading.fuzzy_wuzzy import find_cat, pars_message
+from db_loading.fuzzy_wuzzy import find_cat, pars_message, del_user
 from db_loading.dictionary import Dic_df
 
 with open('../data/result1.json', 'r', encoding='utf-8') as file:
@@ -49,6 +49,7 @@ new_df['name'] = new_df['name'].fillna('без категории')
 
 # # применяю свою функцию к столбцу text результат возвращаю в sub_name
 new_df['sub_name'] = new_df['name'].map(find_cat)
+new_df['from_id'] = new_df['from_id'].map(del_user)
 
 # переименовываю столбцы
 new_df = new_df.rename(columns={'text': 'raw','date': 'created','from_id': 'user_id'})

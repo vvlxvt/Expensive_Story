@@ -152,8 +152,6 @@ def dict_upload(dict_categories: dict):
 
 
 def get_my_expenses(user_id):
-
-    user_id = 'user' + str(user_id)
     result = session.query(MainTable.name, func.round(MainTable.price,2))\
         .filter(MainTable.user_id == user_id)\
         .order_by(MainTable.created.desc())\

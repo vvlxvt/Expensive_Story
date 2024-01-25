@@ -38,12 +38,11 @@ def make_expense(message: str, user_id: int)->Expense:
     # преообразует строчку с тратой в обьект Expense
     name, price = make_name_price(message)
     name = name.lower()
-    user_id = "user" + str(user_id)
     price = comma_replace(price)
     today = datetime.now().replace(second=0, microsecond=0)
     if 'зефир' in name:
         cat = 'зефир'
-    elif price > '149':
+    elif float(price) > 149:
         cat = 'крупная покупка'
     else:
         cat = get_subname(name)

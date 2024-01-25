@@ -33,6 +33,8 @@ def find_cat(query):
     result = best_category
     return result if score > 70 else 'другое'
 
+def del_user(id):
+    return id[4:]
 
 
 # 1. необходимо обьединить 2 функции парсинга в 1
