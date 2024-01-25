@@ -43,7 +43,7 @@ def make_expense(message: str, user_id: int)->Expense:
     today = datetime.now().replace(second=0, microsecond=0)
     if 'зефир' in name:
         cat = 'зефир'
-    elif float(price) > 150:
+    elif price > '149':
         cat = 'крупная покупка'
     else:
         cat = get_subname(name)
