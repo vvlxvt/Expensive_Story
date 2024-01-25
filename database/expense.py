@@ -6,10 +6,10 @@ from datetime import datetime
 class Expense:
     name: str | None
     subname: str | None
-    price: float | None
+    price: str|float | None
     today: datetime | None
     raw: str
-    user_id: int | None
+    user_id: str |int | None
     flag: bool|None
     # флаг указывает добавлять ли новую категорию в словарь
 

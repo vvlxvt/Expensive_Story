@@ -1,13 +1,13 @@
 from sqlalchemy import create_engine, MetaData, Table, func
 from sqlalchemy.orm import Session, registry, DeclarativeBase
 from sqlalchemy.orm.exc import MultipleResultsFound
-from database.expense import Expense
+from .expense import Expense
 from services import get_month_range, get_week_range
 from datetime import datetime
 
 
-engine = create_engine('sqlite:///data/master.db')
-# engine = create_engine(f'sqlite:///../data/sqlite_database.db')
+# engine = create_engine('sqlite:///data/master.db')
+engine = create_engine(f'sqlite:///../data/master.db')
 
 # Создаём` объект MetaData
 meta = MetaData()

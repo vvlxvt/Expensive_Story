@@ -1,11 +1,12 @@
 import re
 from aiogram.types import CallbackQuery
 from datetime import datetime
-from database import no_subs, Queue, Expense
+from database import no_subs, Queue
+from database.expense import Expense
 from database import add_new_data, get_subname
 from lexicon import find_value, LEXICON_CHOICE
 
-def make_name_price(note: str) -> list:
+def make_name_price(note: str) -> tuple:
     # парсит сообщение с тратой на товар и цену, возвращает кортеж (товар, цена)
     pattern_1 = r'(^.+)\s(\d{0,3}[\.|,]?\d{1,2}$)'
     pattern_2 = r"(^\d{0,3}[\.|,]?\d{1,2})\s(.+$)"
@@ -42,7 +43,7 @@ def make_expense(message: str, user_id: int)->Expense:
     today = datetime.now().replace(second=0, microsecond=0)
     if 'зефир' in name:
         cat = 'зефир'
-    elif int(price) > 150:
+    elif float(price) > 150:
         cat = 'крупная покупка'
     else:
         cat = get_subname(name)
