@@ -2,7 +2,7 @@ from sqlalchemy import create_engine, MetaData, Table, func
 from sqlalchemy.orm import Session, registry, DeclarativeBase
 from sqlalchemy.orm.exc import MultipleResultsFound
 from database.expense import Expense
-from services.aux_functions import get_month_range, get_week_range
+from services import get_month_range, get_week_range
 from datetime import datetime
 
 

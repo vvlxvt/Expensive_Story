@@ -1,1 +1,2 @@
-from .main_menu import set_main_menu
+from .main_menu import *
+from .subname_kb import *

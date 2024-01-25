@@ -1,10 +1,9 @@
 import re
 from aiogram.types import CallbackQuery
 from datetime import datetime
-from database.queue import no_subs, Queue
-from database.expense import Expense
-from database.conn_db import add_new_data, get_subname
-from lexicon.lexicon import find_value, LEXICON_CHOICE
+from database import no_subs, Queue, Expense
+from database import add_new_data, get_subname
+from lexicon import find_value, LEXICON_CHOICE
 
 def make_name_price(note: str) -> list:
     # парсит сообщение с тратой на товар и цену, возвращает кортеж (товар, цена)
@@ -38,6 +37,7 @@ def make_expense(message: str, user_id: int)->Expense:
     # преообразует строчку с тратой в обьект Expense
     name, price = make_name_price(message)
     name = name.lower()
+    user_id = "user" + str(user_id)
     price = comma_replace(price)
     today = datetime.now().replace(second=0, microsecond=0)
     if 'зефир' in name:

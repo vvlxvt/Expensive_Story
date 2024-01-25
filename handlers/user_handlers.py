@@ -2,7 +2,7 @@ from aiogram import Router, F
 from aiogram.filters import Command, CommandStart
 from aiogram.types import CallbackQuery, Message
 from lexicon.lexicon import LEXICON, LEXICON_MONTH, LEXICON_ANOTHER
-from keyboards.subname_kb import add_subname_kb, another_kb
+from keyboards import add_subname_kb, another_kb
 from database import *
 router: Router = Router()
 
