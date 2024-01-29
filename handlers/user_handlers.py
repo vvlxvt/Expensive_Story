@@ -4,6 +4,9 @@ from aiogram.types import CallbackQuery, Message
 from lexicon.lexicon import LEXICON, LEXICON_MONTH, LEXICON_ANOTHER
 from keyboards import add_subname_kb, another_kb
 from database import *
+from filters import IsAdmin
+from bot import ADMIN_IDS
+
 router: Router = Router()
 
 @router.message(CommandStart())
@@ -15,14 +18,14 @@ async def process_help_command(message: Message):
     await message.answer(LEXICON[message.text])
 
 
-@router.message(Command(commands='del_last_note'))
+@router.message(Command(commands='del_last_note'),(IsAdmin(ADMIN_IDS)))
 async def del_note(message: Message):
     last = del_last_note()
     text = 'удалена запись: '
     await message.answer( text=text+last)
 
 
-@router.message(Command(commands='today'))
+@router.message(Command(commands='today'),(IsAdmin(ADMIN_IDS)))
 async def get_today(message: Message):
     message_date = message.date
     total_spending = spend_today()
@@ -30,13 +33,13 @@ async def get_today(message: Message):
     formatted_time = message_date.strftime(date_format)
     await message.answer(text=f'сегодня <i>{formatted_time}</i> потрачено <b>{total_spending}</b> GEL ')
 
-@router.message(Command(commands='week'))
+@router.message(Command(commands='week'),(IsAdmin(ADMIN_IDS)))
 async def get_week(message: Message):
     res = get_stat_week()
     total = round(spend_week(),2)
     await message.answer(text=f'  <b>{res}</b>\n С начала недели потрачено: {total} GEL ')
 
-@router.message(Command(commands='month'))
+@router.message(Command(commands='month'),(IsAdmin(ADMIN_IDS)))
 async def get_month(message: Message):
     text = 'За какой месяц показать статистику?'
     await message.answer( text=text, reply_markup=add_subname_kb(**LEXICON_MONTH))
