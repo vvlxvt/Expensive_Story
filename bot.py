@@ -1,8 +1,8 @@
 import logging, sys
 import config
 from keyboards import set_main_menu
-from handlers import other_handlers, user_handlers
 from aiohttp import web
+import handlers
 from aiogram import Bot, Dispatcher
 from aiogram.enums import ParseMode
 from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
@@ -11,11 +11,12 @@ conf = config.load_config(None)
 TOKEN = conf.tg_bot.token
 ADMIN_IDS = conf.tg_bot.admin_ids
 
+
 WEB_SERVER_HOST = "0.0.0.0"
 WEB_SERVER_PORT = 80
 
 WEBHOOK_PATH = f"/{TOKEN}"
-# BASE_WEBHOOK_URL = 'https://b0f8-94-43-154-7.ngrok-free.app'
+# BASE_WEBHOOK_URL = 'https://eb70-94-43-154-7.ngrok-free.app'
 BASE_WEBHOOK_URL = "https://expensive-story-vvlxvt.amvera.io"
 
 async def on_startup(bot: Bot) -> None:
@@ -25,8 +26,8 @@ async def on_startup(bot: Bot) -> None:
 
 def main() -> None:
     dp = Dispatcher()
-    dp.include_router(user_handlers.router)
-    dp.include_router(other_handlers.router)
+    dp.include_router(handlers.user_handlers.router)
+    dp.include_router(handlers.other_handlers.router)
 
     # Register startup hook to initialize webhook
     dp.startup.register(on_startup)

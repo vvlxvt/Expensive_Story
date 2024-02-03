@@ -17,15 +17,15 @@ async def process_start_command(message: Message):
 async def process_help_command(message: Message):
     await message.answer(LEXICON[message.text])
 
-
-@router.message(Command(commands='del_last_note'),(IsAdmin(ADMIN_IDS)))
+@router.message(Command(commands='del_last_note'), IsAdmin(ADMIN_IDS))
 async def del_note(message: Message):
     last = del_last_note()
     text = 'удалена запись: '
     await message.answer( text=text+last)
 
 
-@router.message(Command(commands='today'),(IsAdmin(ADMIN_IDS)))
+@router.message(Command(commands='today'), IsAdmin(ADMIN_IDS))
+@router.message(IsAdmin(ADMIN_IDS))
 async def get_today(message: Message):
     message_date = message.date
     total_spending = spend_today()
@@ -33,18 +33,18 @@ async def get_today(message: Message):
     formatted_time = message_date.strftime(date_format)
     await message.answer(text=f'сегодня <i>{formatted_time}</i> потрачено <b>{total_spending}</b> GEL ')
 
-@router.message(Command(commands='week'),(IsAdmin(ADMIN_IDS)))
+@router.message(Command(commands='week'), IsAdmin(ADMIN_IDS))
 async def get_week(message: Message):
     res = get_stat_week()
     total = round(spend_week(),2)
     await message.answer(text=f'  <b>{res}</b>\n С начала недели потрачено: {total} GEL ')
 
-@router.message(Command(commands='month'),(IsAdmin(ADMIN_IDS)))
+@router.message(Command(commands='month'), IsAdmin(ADMIN_IDS))
 async def get_month(message: Message):
     text = 'За какой месяц показать статистику?'
     await message.answer( text=text, reply_markup=add_subname_kb(**LEXICON_MONTH))
 
-@router.message(Command(commands='my_10'))
+@router.message(Command(commands='my_10'), IsAdmin(ADMIN_IDS))
 async def get_month(message: Message):
     user_id = message.from_user.id
     result = get_my_expenses(user_id)
