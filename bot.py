@@ -8,16 +8,18 @@ from aiogram.enums import ParseMode
 from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
 
 conf = config.load_config(None)
-TOKEN = conf.tg_bot.token
-ADMIN_IDS = conf.tg_bot.admin_ids
+# TOKEN = conf.tg_bot.token
+TOKEN = '6541851084:AAFIsmRzvzndK-x2vZxyFra-P40yZtPkbnw'
+ADMIN_IDS = [541172529, 1194999116]
+# ADMIN_IDS = conf.tg_bot.admin_ids
 
 
 WEB_SERVER_HOST = "0.0.0.0"
 WEB_SERVER_PORT = 80
 
 WEBHOOK_PATH = f"/{TOKEN}"
-# BASE_WEBHOOK_URL = 'https://eb70-94-43-154-7.ngrok-free.app'
-BASE_WEBHOOK_URL = "https://expensive-story-vvlxvt.amvera.io"
+BASE_WEBHOOK_URL = 'https://3d46-94-43-154-7.ngrok-free.app'
+# BASE_WEBHOOK_URL = "https://expensive-story-vvlxvt.amvera.io"
 
 async def on_startup(bot: Bot) -> None:
     await bot.set_webhook(f"{BASE_WEBHOOK_URL}{WEBHOOK_PATH}",)

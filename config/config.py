@@ -20,5 +20,3 @@ def load_config(path: str | None) -> Config:
             token=env('BOT_TOKEN'),
             admin_ids = list(map(int, env.list('ADMIN_IDS')))))
 
-'Test_VVLX_Bot'
-'6541851084:AAFIsmRzvzndK-x2vZxyFra-P40yZtPkbnw'

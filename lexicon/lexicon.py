@@ -26,7 +26,7 @@ LEXICON_COMMANDS: dict[str, str] = {
     '/today': 'траты за сегодня',
     '/week': 'траты за неделю',
     '/month': 'траты за месяц',
-    '/my_10': 'мои 10 трат',
+    '/my_15': 'мои 15 трат',
 
 }
 LEXICON_SUBNAMES: dict[str, str] = {
@@ -35,7 +35,7 @@ LEXICON_SUBNAMES: dict[str, str] = {
     'pets': 'животные',
     "farmacy":"аптека",
     'food': 'основные продукты',
-    'non_food': 'неосн. продукты'}
+    'big expenses': 'крупные покупки'}
 
 # зефир
 # Уля
@@ -62,6 +62,7 @@ LEXICON_NOT_BASIC: dict[str, str] = {
     'ulya': 'Уля',
     'pets': 'животные',
     "farmacy":"аптека",
+    'big expenses': 'крупные покупки'
 }
 
 LEXICON_FOOD: dict[str, str] = {

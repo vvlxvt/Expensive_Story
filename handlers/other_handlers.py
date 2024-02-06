@@ -8,9 +8,10 @@ from filters import IsAdmin
 from bot import ADMIN_IDS
 
 router: Router = Router()
+router.message.filter(IsAdmin(ADMIN_IDS))
 
 
-@router.message(IsAdmin(ADMIN_IDS))
+@router.message(F.text.lower())
 async def add_note(message: Message):
     # обрабатывает любое сообщение пользователя с трат-ой/-ами
     # добавляет трату в БД

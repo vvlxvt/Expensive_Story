@@ -6,8 +6,8 @@ from services import get_month_range, get_week_range
 from datetime import datetime
 
 
-# engine = create_engine('sqlite:///data/master.db')
-engine = create_engine(f'sqlite:///../data/master.db')
+engine = create_engine('sqlite:///data/master.db')
+# engine = create_engine(f'sqlite:///../data/master.db')
 
 # Создаём` объект MetaData
 meta = MetaData()
@@ -155,7 +155,7 @@ def get_my_expenses(user_id):
     result = session.query(MainTable.name, func.round(MainTable.price,2))\
         .filter(MainTable.user_id == user_id)\
         .order_by(MainTable.created.desc())\
-        .limit(10).all()
+        .limit(15).all()
     return '\n'.join(format_output(result))
 
 def get_another(start_date, end_date):
