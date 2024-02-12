@@ -35,6 +35,7 @@ LEXICON_SUBNAMES: dict[str, str] = {
     'pets': 'животные',
     "farmacy":"аптека",
     'food': 'основные продукты',
+    'non_food': 'неосновные продукты',
     'big expenses': 'крупные покупки'}
 
 # зефир
