@@ -52,12 +52,12 @@ async def get_month(message: Message):
     text = 'За какой месяц показать статистику?'
     await message.answer( text=text, reply_markup=add_subname_kb(**LEXICON_MONTH))
 
-@router.message(Command(commands='my_'))
+@router.message(Command(commands='my_month'))
 async def get_month(message: Message):
     user_id = message.from_user.id
     result = get_my_expenses(user_id)
-    text = 'Мои последние 15 трат: '
-    await message.answer( text = f' {text}\n {result} ')
+    text = 'Все мои траты с начала месяца: '
+    await message.answer( text = f' <b>{text}</b>\n {result} ')
 
 @router.callback_query(F.data.in_(LEXICON_MONTH.keys()))
 async def process_chose_month(callback: CallbackQuery):

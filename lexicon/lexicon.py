@@ -26,7 +26,7 @@ LEXICON_COMMANDS: dict[str, str] = {
     '/today': 'траты за сегодня',
     '/week': 'траты за неделю',
     '/month': 'траты за месяц',
-    '/my_15': 'мои 15 трат',
+    '/my_month': 'мои траты с начала месяца',
 
 }
 LEXICON_SUBNAMES: dict[str, str] = {

@@ -6,8 +6,8 @@ from services import get_month_range, get_week_range
 from datetime import datetime
 
 
-engine = create_engine('sqlite:///data/master.db')
-# engine = create_engine(f'sqlite:///../data/master.db')
+#engine = create_engine('sqlite:///data/master.db')
+engine = create_engine(f'sqlite:///../data/master.db')
 
 # Создаём` объект MetaData
 meta = MetaData()
@@ -112,7 +112,6 @@ def get_stat_month(mm: str):
         .filter(MainTable.created >= start_date, MainTable.created <= end_date)\
         .group_by(MainTable.sub_name)\
         .order_by(func.sum(MainTable.price).desc()).all()
-
     return '\n'.join(format_output(result))
 
 def get_stat_week():
@@ -138,8 +137,9 @@ def spend_week():
 
 def spend_month(month):
     start_date, end_date = get_month_range(month)
-    result = session.query(func.round(func.sum(MainTable.price),2)).filter(func.DATE(MainTable.created) >= start_date,
-                                                             func.DATE(MainTable.created) <= end_date).scalar()
+    result = session.query(func.round(func.sum(MainTable.price),2))\
+        .filter(func.DATE(MainTable.created) >= start_date,
+        func.DATE(MainTable.created) <= end_date).scalar()
     return result
 
 def dict_upload(dict_categories: dict):
@@ -152,14 +152,20 @@ def dict_upload(dict_categories: dict):
 
 
 def get_my_expenses(user_id):
-    result = session.query(MainTable.name, func.round(MainTable.price,2))\
+    # получить мои траты с начала месяца
+    _month = datetime.now().month
+    _year = datetime.now().year
+    start_date = datetime(_year, _month, 1)
+    end_date = datetime.today().date()
+    result: list = session.query(MainTable.name, func.round(MainTable.price,2))\
         .filter(MainTable.user_id == user_id)\
-        .order_by(MainTable.created.desc())\
-        .limit(15).all()
-    return '\n'.join(format_output(result))
+        .filter(func.DATE(MainTable.created) >= start_date,func.DATE(MainTable.created) <= end_date) \
+        .all()
+    print(*result)
+    total = str(round(sum(item[1] if item else 0 for item in result),2))
+    return '\n'.join(format_output(result)) + '\nИтого: ' + total
 
 def get_another(start_date, end_date):
-
     result = session.query(MainTable.name, func.round(MainTable.price, 2)) \
         .filter(MainTable.created.between(start_date, end_date)) \
         .filter(MainTable.sub_name == "другое")\
