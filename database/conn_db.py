@@ -6,11 +6,11 @@ from services import get_month_range, get_week_range
 from datetime import datetime
 
 
-#engine = create_engine('sqlite:///data/master.db')
-engine = create_engine(f'sqlite:///../data/master.db')
+engine = create_engine('sqlite:///data/master.db')
+# engine = create_engine(f'sqlite:///../data/master.db')
 
 # Создаём` объект MetaData
-meta = MetaData()
+meta = MetaData() 
 
 # Создаю объект registry
 mapper_registry = registry()

@@ -1,6 +1,6 @@
 LEXICON: dict[str, str] = {
     '/start': '''<b>Hi!</b> I bot which help you to spend your money wisely )''',
-    '/help': '''try text your notes like expence price''',
+    '/help': '''try text your notes like: <expence> <price>''',
 }
 
 LEXICON_MONTH: dict[str,str] = {
@@ -17,9 +17,10 @@ LEXICON_MONTH: dict[str,str] = {
     'nov': 'ноябрь',
     'dec': 'декабрь'}
 
-LEXICON_CANCEL: dict[str, str] = {
-    'cancel': 'ОТМЕНИТЬ',
-    'add_item': 'Да'}
+
+# LEXICON_CORRECT: dict[str, str] = {
+#     'correct': 'ИСПРАВИТЬ',
+#     'add_item': 'Да'}
 
 LEXICON_COMMANDS: dict[str, str] = {
     '/del_last_note': 'удалить последнюю запись',
@@ -36,7 +37,9 @@ LEXICON_SUBNAMES: dict[str, str] = {
     "farmacy":"аптека",
     'food': 'основные продукты',
     'non_food': 'неосновные продукты',
-    'big expenses': 'крупные покупки'}
+    'big expenses': 'крупные покупки',
+    'cancel': 'ОТМЕНИТЬ'
+}
 
 # зефир
 # Уля
@@ -63,7 +66,7 @@ LEXICON_NOT_BASIC: dict[str, str] = {
     'ulya': 'Уля',
     'pets': 'животные',
     "farmacy":"аптека",
-    'big expenses': 'крупные покупки'
+    'big expenses': 'крупные покупки',
 }
 
 LEXICON_FOOD: dict[str, str] = {
@@ -75,7 +78,8 @@ LEXICON_FOOD: dict[str, str] = {
     'eggs':'яйца',
     'semi-finished':'полуфабрикаты',
     'cereals':'крупы',
-    'another':'др. продукты'
+    'another':'др. продукты',
+    'correct': '⬅️',
 }
 
 LEXICON_NONFOOD: dict[str, str] = {
@@ -88,7 +92,8 @@ LEXICON_NONFOOD: dict[str, str] = {
     'cafe':'кафе',
     'taxi':'транспорт',
     'services':'услуги',
-    "renovation": 'ремонт'
+    "renovation": 'ремонт',
+    'correct': '⬅️',
 }
 
 LEXICON_ANOTHER: dict[str, str] = {

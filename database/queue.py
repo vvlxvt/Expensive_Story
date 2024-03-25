@@ -10,9 +10,9 @@ class Queue:
 
     def dequeue(self):
         if not self.is_empty():
-            return self.items.pop(0)
+            return self.items.pop(0) # извлекаю элемент из начала очереди
         else:
-            return None  # Можете выбрать другой способ обработки пустого стека
+            return None
 
     def peek(self):
         if not self.is_empty():

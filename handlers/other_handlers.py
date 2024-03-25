@@ -38,6 +38,13 @@ async def cancel_add_expense(callback: CallbackQuery):
         await callback.message.delete_reply_markup()
 
 
+@router.callback_query(F.data=='correct')
+async def correct_add_expense(callback: CallbackQuery):
+    # реагирует на нажат ие кнопки ИСПРАВИТЬ для выбора категории товару
+    top = no_subs.peek()[2]
+    await callback.message.edit_text(f'<b> Какую категорию добавить {top} </b>',reply_markup=add_subname_kb(**LEXICON_SUBNAMES))
+    await callback.answer()
+
 @router.callback_query(F.data=='food')
 async def process_basic_food_press(callback: CallbackQuery):
     # реагирует на ключ "food"
