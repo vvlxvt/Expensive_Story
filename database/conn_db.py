@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session, registry, DeclarativeBase
 from sqlalchemy.orm.exc import MultipleResultsFound
 from .expense import Expense
 from services import get_month_range, get_week_range
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 engine = create_engine('sqlite:///data/master.db')
@@ -155,13 +155,14 @@ def get_my_expenses(user_id):
     # получить мои траты с начала месяца
     _month = datetime.now().month
     _year = datetime.now().year
-    start_date = datetime(_year, _month, 1)
-    end_date = datetime.today().date()
-    result: list = session.query(MainTable.name, func.round(MainTable.price,2))\
-        .filter(MainTable.user_id == user_id)\
-        .filter(func.DATE(MainTable.created) >= start_date,func.DATE(MainTable.created) <= end_date) \
-        .all()
-    print(*result)
+    start_date = datetime(_year, _month, 1, hour=0, minute=0, second=0) - timedelta(seconds=1)
+    end_date = datetime.now().replace(second=0, microsecond=0)
+
+    result: list = (session.query(MainTable.name, func.round(MainTable.price, 2))
+                    .filter(MainTable.user_id == user_id)
+                    .filter(func.DATE(MainTable.created) >= start_date,
+                            func.DATE(MainTable.created) <= end_date).all())
+
     total = str(round(sum(item[1] if item else 0 for item in result),2))
     return '\n'.join(format_output(result)) + '\nИтого: ' + total
 
