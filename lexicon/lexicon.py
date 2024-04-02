@@ -3,6 +3,10 @@ LEXICON: dict[str, str] = {
     '/help': '''try text your notes like: <expence> <price>''',
 }
 
+LEXICON_book: dict[str, str] = {
+    'forward': '>>',
+    'backward': '<<'}
+
 LEXICON_MONTH: dict[str,str] = {
     'jan': 'январь',
     'feb': 'февраль',

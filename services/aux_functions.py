@@ -1,6 +1,9 @@
 from datetime import datetime, timedelta
 import calendar
 
+book = {}
+
+
 def get_month_range(month:str)->tuple:
     desired_year = datetime.now().year
     desired_month = list(calendar.month_abbr).index(month.capitalize())
@@ -20,4 +23,18 @@ def get_week_range()->tuple:
     start_of_week = (current_datetime - timedelta(days=current_datetime.weekday())).date()
     return start_of_week, current_datetime
 
-print(get_month_range('dec'))
+def _get_part_text(expenses_out: str, start: int, page_size: int) -> tuple[str, int]:
+    end = start + page_size
+    result = [x+' '+str(y) for x,y in expenses_out]
+    return '\n'.join(result[start:end])
+
+def prepare_book(text:list) -> None:
+    # global book
+    finish = len(text) - 1
+    start,i = 0, 1
+    page_size = 4
+    while start < finish:
+        strokes = _get_part_text(text,start,page_size)
+        book.update({i: strokes})
+        start += page_size
+        i += 1

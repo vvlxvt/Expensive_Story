@@ -1,15 +1,16 @@
 from aiogram import Router, F
 from aiogram.types import Message,CallbackQuery
-from services import get_categories, add_new_data, form_expense_instance
+from services import get_categories, add_new_data, form_expense_instance, book
 from keyboards import add_subname_kb
 from lexicon import *
 from database import no_subs
 from filters import IsAdmin
 from bot import ADMIN_IDS
+from keyboards.pagination import create_pagination_keyboard
+page = 1
 
 router: Router = Router()
 router.message.filter(IsAdmin(ADMIN_IDS))
-
 
 @router.message(F.text.lower())
 async def add_note(message: Message):
@@ -24,6 +25,27 @@ async def add_note(message: Message):
         await message.answer(text=f'добавить категорию товару <b>{no_subs.peek()[2]}</b>?',
                              reply_markup=add_subname_kb(**LEXICON_SUBNAMES))
 
+@router.callback_query(F.data == 'forward')
+async def process_forward_press(callback: CallbackQuery):
+    global page
+    if page < len(book):
+        page += 1
+        text = book[page]
+        await callback.message.edit_text(
+            text=text,
+            reply_markup=create_pagination_keyboard(page))
+    await callback.answer()
+
+@router.callback_query(F.data == 'backward')
+async def process_forward_press(callback: CallbackQuery):
+    global page
+    if page > 1:
+        page -= 1
+        text = book[page]
+        await callback.message.edit_text(
+            text=text,
+            reply_markup=create_pagination_keyboard(page))
+    await callback.answer()
 
 @router.callback_query(F.data=='cancel')
 async def cancel_add_expense(callback: CallbackQuery):

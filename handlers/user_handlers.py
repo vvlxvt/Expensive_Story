@@ -1,14 +1,19 @@
 from aiogram import Router, F
 from aiogram.filters import Command, CommandStart
 from aiogram.types import CallbackQuery, Message
-from lexicon.lexicon import LEXICON, LEXICON_MONTH, LEXICON_ANOTHER
+
+from keyboards.pagination import create_pagination_keyboard
+from lexicon import LEXICON, LEXICON_MONTH, LEXICON_ANOTHER
 from keyboards import add_subname_kb, another_kb
-from database import *
+from database import (get_stat_week, get_my_expenses, get_another, del_last_note, get_stat_month, spend_week,
+                      spend_month, spend_today)
 from filters import IsAdmin
 from bot import ADMIN_IDS
+from services import prepare_book, get_month_range, book
 
 router: Router = Router()
 router.message.filter(IsAdmin(ADMIN_IDS))
+
 
 @router.message(CommandStart())
 async def process_start_command(message: Message):
@@ -56,8 +61,10 @@ async def get_month(message: Message):
 async def get_month(message: Message):
     user_id = message.from_user.id
     result = get_my_expenses(user_id)
+    prepare_book(result)
     text = 'Все мои траты с начала месяца: '
-    await message.answer( text = f' <b>{text}</b>\n {result} ')
+    await message.answer( text = f' <b>{text}</b>\n {book[1]} ', reply_markup=create_pagination_keyboard())
+
 
 @router.callback_query(F.data.in_(LEXICON_MONTH.keys()))
 async def process_chose_month(callback: CallbackQuery):
