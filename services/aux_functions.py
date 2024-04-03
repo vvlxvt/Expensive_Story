@@ -25,14 +25,18 @@ def get_week_range()->tuple:
 
 def _get_part_text(expenses_out: str, start: int, page_size: int) -> tuple[str, int]:
     end = start + page_size
-    result = [x+' '+str(y) for x,y in expenses_out]
-    return '\n'.join(result[start:end])
+    nums = list(range(start + 1 ,end + 1))
+    exps = [x+' '+str(y) for x,y in expenses_out[start:end]]
+    nums_exps = list(zip(nums, exps))
+    result = [str(x) + '.  ' + y for x, y in nums_exps]
+    print(result)
+    return '\n'.join(result)
 
 def prepare_book(text:list) -> None:
     # global book
     finish = len(text) - 1
     start,i = 0, 1
-    page_size = 4
+    page_size = 20
     while start < finish:
         strokes = _get_part_text(text,start,page_size)
         book.update({i: strokes})
