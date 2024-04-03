@@ -58,8 +58,8 @@ def get_my_expenses(user_id):
                     .filter(MainTable.user_id == user_id)
                     .filter(func.DATE(MainTable.created) >= start_date,
                             func.DATE(MainTable.created) <= end_date).all())
-
-    # total = str(round(sum(item[1] if item else 0 for item in result),2))
+    total = round(sum(item[1] if item else 0 for item in result), 2)
+    result.append(('итого: ',total,))
     return result
 
 def get_another(start_date, end_date):
