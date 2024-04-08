@@ -3,7 +3,6 @@ import calendar
 
 book = {}
 
-
 def get_month_range(month:str)->tuple:
     desired_year = datetime.now().year
     desired_month = list(calendar.month_abbr).index(month.capitalize())
@@ -42,3 +41,6 @@ def prepare_book(text:list) -> None:
         book.update({i: strokes})
         start += page_size
         i += 1
+
+
+

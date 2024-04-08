@@ -81,7 +81,18 @@ def form_expense_instance(no_subs: Queue, callback: CallbackQuery)->Expense:
     flag = True
     return Expense(name, sub_name, price, today, raw_message, user_id, flag)
 
-
+# @dp.message_handler(commands=['remove_keyboard'])
+# async def remove_keyboard(message: types.Message):
+#     # Удаляем клавиатуру с предыдущего сообщения методом delete_message
+#     await bot.delete_message(chat_id=message.chat.id, message_id=message.message_id - 1)
+#     await message.answer("Клавиатура удалена")
+#
+#
+# @dp.message_handler(commands=['edit_reply_markup'])
+# async def edit_reply_markup(message: types.Message):
+#     # Изменяем клавиатуру с предыдущего сообщения методом edit_message_reply_markup
+#     await bot.edit_message_reply_markup(chat_id=message.chat.id, message_id=message.message_id - 1, reply_markup=None)
+#     await message.answer("Клавиатура удалена")
 
 
 

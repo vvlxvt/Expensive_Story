@@ -1,7 +1,6 @@
 from aiogram import Router, F
 from aiogram.filters import Command, CommandStart
 from aiogram.types import CallbackQuery, Message
-
 from keyboards.pagination import create_pagination_keyboard
 from lexicon import LEXICON, LEXICON_MONTH, LEXICON_ANOTHER
 from keyboards import add_subname_kb, another_kb
@@ -13,15 +12,19 @@ from services import prepare_book, get_month_range, book
 
 router: Router = Router()
 router.message.filter(IsAdmin(ADMIN_IDS))
+MY_EXP = {}
 
 
 @router.message(CommandStart())
 async def process_start_command(message: Message):
     await message.answer(LEXICON[message.text])
 
+
 @router.message(Command(commands='help'))
 async def process_help_command(message: Message):
     await message.answer(LEXICON[message.text])\
+
+
 
 @router.message(Command(commands='tanya'))
 async def process_help_command(message: Message):
@@ -35,7 +38,7 @@ async def process_help_command(message: Message):
 async def del_note(message: Message):
     last = del_last_note()
     text = 'удалена запись: '
-    await message.answer( text=text+last)
+    await message.answer(text=text+last)
 
 
 @router.message(Command(commands='today'))
@@ -46,16 +49,19 @@ async def get_today(message: Message):
     formatted_time = message_date.strftime(date_format)
     await message.answer(text=f'сегодня <i>{formatted_time}</i> потрачено <b>{total_spending}</b> GEL ')
 
+
 @router.message(Command(commands='week'))
 async def get_week(message: Message):
     res = get_stat_week()
-    total = round(spend_week(),2)
+    total = round(spend_week(), 2)
     await message.answer(text=f'  <b>{res}</b>\n С начала недели потрачено: {total} GEL ')
+
 
 @router.message(Command(commands='month'))
 async def get_month(message: Message):
     text = 'За какой месяц показать статистику?'
-    await message.answer( text=text, reply_markup=add_subname_kb(**LEXICON_MONTH))
+    await message.answer(text=text, reply_markup=add_subname_kb(**LEXICON_MONTH))
+
 
 @router.message(Command(commands='my_month'))
 async def get_month(message: Message):
@@ -63,7 +69,12 @@ async def get_month(message: Message):
     result = get_my_expenses(user_id)
     prepare_book(result)
     text = 'Все мои траты с начала месяца: '
-    await message.answer( text = f' <b>{text}</b>\n {book[1]} ', reply_markup=create_pagination_keyboard())
+    sent_message = await message.answer(text=f' <b>{text}</b>\n {book[1]} ',
+                                        reply_markup=create_pagination_keyboard())
+    chat_id = sent_message.chat.id
+    message_id = sent_message.message_id
+    MY_EXP.update({'chat_id':chat_id})
+    MY_EXP.update({'message_id': message_id})
 
 
 @router.callback_query(F.data.in_(LEXICON_MONTH.keys()))
@@ -77,7 +88,8 @@ async def process_chose_month(callback: CallbackQuery):
     await callback.message.answer(text=f'Показать подробно категорию ДРУГОЕ?')
     await callback.message.answer(text=month, reply_markup=another_kb(**LEXICON_ANOTHER))
 
-@router.callback_query(F.data=='_another')
+
+@router.callback_query(F.data == '_another')
 async def show_another(callback: CallbackQuery):
     month = callback.message.text
     start_date, end_date = get_month_range(month)
@@ -86,8 +98,11 @@ async def show_another(callback: CallbackQuery):
         text=f'<u>Другое за <b>{LEXICON_MONTH[month]}</b>:</u> \n{result}\n')
     await callback.message.delete_reply_markup()
 
-@router.callback_query(F.data=='_cancel')
+
+@router.callback_query(F.data == '_cancel')
 async def cancel_add_expense(callback: CallbackQuery):
         await callback.message.edit_text(text = 'отмена')
         await callback.message.delete_reply_markup()
+
+
 
