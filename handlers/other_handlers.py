@@ -1,6 +1,5 @@
 from aiogram import Router, F
 from aiogram.types import Message,CallbackQuery
-from handlers.user_handlers import MY_EXP
 from services import get_categories, add_new_data, form_expense_instance, book
 from keyboards import add_subname_kb
 from lexicon import *
@@ -8,8 +7,10 @@ from database import no_subs
 from filters import IsAdmin
 from bot import ADMIN_IDS
 from keyboards.pagination import create_pagination_keyboard
+from config.config import GlobalVars
 
-page = 1
+gv = GlobalVars()
+
 router: Router = Router()
 router.message.filter(IsAdmin(ADMIN_IDS))
 
@@ -29,29 +30,29 @@ async def add_note(message: Message):
 
 @router.callback_query(F.data == 'forward')
 async def process_forward_press(callback: CallbackQuery):
-    global page
-    if page < len(book):
-        page += 1
-        text = book[page]
+    if gv.page < len(book):
+        gv.page += 1
+        text = book[gv.page]
+        print(text)
         await callback.message.edit_text(
             text=text,
-            reply_markup=create_pagination_keyboard(page))
+            reply_markup=create_pagination_keyboard(gv.page))
     await callback.answer()
 
 
 @router.callback_query(F.data == 'backward')
 async def process_forward_press(callback: CallbackQuery):
-    global page
-    if page > 1:
-        page -= 1
-        text = book[page]
+    if gv.page > 1:
+        gv.page -= 1
+        text = book[gv.page]
+        print(text)
         await callback.message.edit_text(
             text=text,
-            reply_markup=create_pagination_keyboard(page))
+            reply_markup=create_pagination_keyboard(gv.page))
     await callback.answer()
 
 
-@router.callback_query(lambda x: '/' in x.data)
+@router.callback_query(lambda x: 'CLOSE' in x.data)
 async def process_stop_press(callback: CallbackQuery):
     await callback.message.delete_reply_markup()
 

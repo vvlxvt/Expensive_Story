@@ -20,3 +20,10 @@ def load_config(path: str | None) -> Config:
             token=env('BOT_TOKEN'),
             admin_ids = list(map(int, env.list('ADMIN_IDS')))))
 
+class GlobalVars:
+    _instance = None
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super(GlobalVars, cls).__new__(cls)
+            cls._instance.page = None
+        return cls._instance

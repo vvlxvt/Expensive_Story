@@ -9,10 +9,11 @@ from database import (get_stat_week, get_my_expenses, get_another, del_last_note
 from filters import IsAdmin
 from bot import ADMIN_IDS
 from services import prepare_book, get_month_range, book
+from config.config import GlobalVars
 
+global_vars = GlobalVars()
 router: Router = Router()
 router.message.filter(IsAdmin(ADMIN_IDS))
-MY_EXP = {}
 
 
 @router.message(CommandStart())
@@ -68,13 +69,11 @@ async def get_month(message: Message):
     user_id = message.from_user.id
     result = get_my_expenses(user_id)
     prepare_book(result)
+    global_vars.page = 1
     text = 'Все мои траты с начала месяца: '
-    sent_message = await message.answer(text=f' <b>{text}</b>\n {book[1]} ',
-                                        reply_markup=create_pagination_keyboard())
-    chat_id = sent_message.chat.id
-    message_id = sent_message.message_id
-    MY_EXP.update({'chat_id':chat_id})
-    MY_EXP.update({'message_id': message_id})
+    await message.answer(text=f' <b>{text}</b>\n {book[global_vars.page]} ',
+                         reply_markup=create_pagination_keyboard())
+
 
 
 @router.callback_query(F.data.in_(LEXICON_MONTH.keys()))
